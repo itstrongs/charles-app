@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_margin_small"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/text_name"
+                style="@style/style_text_common_white"
+                android:singleLine="true"
+                android:text="晚上去钱塘江边玩滑板" />
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/color_white"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/img_set_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_set_top"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/check_box"
+                style="@style/style_text_common_white"
+                android:text="完成"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btn_card"
+                style="@style/style_text_common_white"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/shape_bg_white_translucent"
+                android:paddingLeft="@dimen/dimen_margin_small"
+                android:paddingRight="@dimen/dimen_margin_small"
+                android:text="打卡"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_content"
+        style="@style/style_text_common_gray"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="测试"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/text_date"
+        style="@style/style_text_tip_gray"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:text="测试" />
+</LinearLayout>

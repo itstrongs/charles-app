@@ -1,0 +1,72 @@
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dimen_margin_small"
+    android:paddingBottom="@dimen/dimen_margin_small">
+
+    <RadioButton
+        android:id="@+id/radio_menu_note"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_party"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="笔记"
+        android:textSize="12sp" />
+
+    <RadioButton
+        android:id="@+id/radio_menu_todo"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_meet"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="TODO"
+        android:textSize="12sp" />
+
+    <RadioButton
+        android:id="@+id/radio_menu_sentence"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_tab_sentence"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="微话"
+        android:textSize="12sp" />
+
+    <RadioButton
+        android:id="@+id/radio_menu_friends"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_tab_friends"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="朋友圈"
+        android:textSize="12sp" />
+
+    <RadioButton
+        android:id="@+id/radio_menu_my"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_me"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="我"
+        android:textSize="12sp" />
+</RadioGroup>

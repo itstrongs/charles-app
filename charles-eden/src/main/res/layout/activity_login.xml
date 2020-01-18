@@ -1,0 +1,37 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_margin_big">
+
+    <TextView
+        style="@style/style_text_common_dark"
+        android:text="欢迎使用完美笔记" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_username"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:hint="请输入用户名" />
+
+        <EditText
+            android:id="@+id/edit_password"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:hint="请输入密码" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:layout_marginBottom="@dimen/dimen_margin_big"
+            android:text="登录" />
+    </LinearLayout>
+</FrameLayout>

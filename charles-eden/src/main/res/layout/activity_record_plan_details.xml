@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dimen_margin"
+    android:background="@drawable/img_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_margin">
+
+    <TextView
+        android:id="@+id/text_name"
+        style="@style/style_text_title_white"
+        android:layout_gravity="center_horizontal"
+        android:text="测试" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <EditText
+            android:id="@+id/text_content"
+            style="@style/style_text_common_gray"
+            android:layout_marginTop="@dimen/dimen_margin" />
+    </ScrollView>
+</LinearLayout>

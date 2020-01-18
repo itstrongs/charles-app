@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_text_common_dark"
+            android:layout_width="80dp"
+            android:layout_gravity="center_horizontal"
+            android:text="笔记：" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_text_common_dark"
+            android:layout_width="80dp"
+            android:text="说明：" />
+
+        <EditText
+            android:id="@+id/edit_desc"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+</LinearLayout>

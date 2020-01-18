@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/style_text_common_white"
+        android:padding="@dimen/dimen_margin"
+        android:text="日历形式展示每个月添加的计划" />
+
+    <TextView
+        style="@style/style_text_common_white"
+        android:layout_marginTop="@dimen/dimen_margin"
+        android:padding="@dimen/dimen_margin"
+        android:text="我的想法是做一个写笔记和做计划结合的工具APP，自动保存到云端服务器，数据不会丢失" />
+
+    <TextView
+        style="@style/style_text_common_white"
+        android:layout_marginTop="@dimen/dimen_margin"
+        android:padding="@dimen/dimen_margin"
+        android:text="和别的笔记软件不同的地方在于统计笔记数据，比如展示用户一年、一个月完成了多少计划做的事、打卡跑了几次步，获取一年发生了哪些有趣的事，看了更有完成计划积极性和成就感" />
+</LinearLayout>

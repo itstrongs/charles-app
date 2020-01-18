@@ -1,0 +1,2 @@
+include ':charles-eden', ':charles-utils', ':charles-utils', ':charles-learn'
+rootProject.name='charles-app'
