@@ -78,13 +78,13 @@ public class TodoListActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.text_back, R.id.text_add})
+    @OnClick({R.id.text_back, R.id.img_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.text_back:
                 finish();
                 break;
-            case R.id.text_add:
+            case R.id.img_add:
                 DialogHelper.showDialog(mActivity, (content) -> {
                     RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
                         @Override

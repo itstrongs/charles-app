@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="dimen_margin">16dp</dimen>
+    <dimen name="dimen_margin_big">32dp</dimen>
+    <dimen name="dimen_margin_small">8dp</dimen>
+
+    <dimen name="dimen_text_tip">12sp</dimen>
+    <dimen name="dimen_text_common">15sp</dimen>
+    <dimen name="dimen_text_title">18sp</dimen>
+</resources>

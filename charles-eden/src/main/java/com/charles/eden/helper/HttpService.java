@@ -53,8 +53,8 @@ public interface HttpService {
     @POST("/person-friends")
     Observable<HttpResult> personFriends(@Body PersonFriendsBo personFriendsBo);
 
-    @DELETE("/person-friends")
-    Observable<HttpResult> personFriends(Long id);
+    @DELETE("/person-friends/{id}")
+    Observable<HttpResult> personFriends(@Path("id") Long id);
 
     @GET("/todo-plan/list")
     Observable<HttpResult> todoList(@Query("typeId") Long typeId);

@@ -2,8 +2,8 @@ package com.charles.eden.model;
 
 public class ConstantPool {
 
-//    public static final String URL_BASE_RELEASE = "http://121.41.74.211/";
-    public static final String URL_BASE_RELEASE = "http://192.168.31.51:8080/";
+    public static final String URL_BASE_RELEASE = "http://121.41.74.211/";
+//    public static final String URL_BASE_RELEASE = "http://192.168.31.51:8080/";
 //    public static final String URL_BASE_DEBUG = "http://192.168.31.51:8080/";
 
     public static final String SP_IS_LOGIN = "sp_is_login";

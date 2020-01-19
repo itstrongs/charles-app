@@ -19,6 +19,7 @@ import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.bo.PersonFriendsBo;
 import com.charles.eden.model.dto.FriendsDto;
+import com.charles.utils.Logger;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
 import com.charles.utils.base.BaseFragment;
@@ -146,6 +147,7 @@ public class FriendsFragment extends BaseFragment {
                         RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
                             @Override
                             public Observable<HttpResult> getObservable(HttpService httpService) {
+                                Logger.d("friendsDto.getId(): " + friendsDto.getId());
                                 return httpService.personFriends(friendsDto.getId());
                             }
 

@@ -7,4 +7,68 @@
         <item name="android:layout_marginTop">@dimen/dimen_margin</item>
         <item name="android:padding">@dimen/dimen_margin_small</item>
     </style>
+
+    <!--黑色普通文字样式-->
+    <style name="style_text_common_dark">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_dark</item>
+        <item name="android:textSize">@dimen/dimen_text_common</item>
+    </style>
+
+    <!--白色普通文字样式-->
+    <style name="style_text_common_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/dimen_text_common</item>
+    </style>
+
+    <!--灰色普通文字样式-->
+    <style name="style_text_common_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_gray</item>
+        <item name="android:textSize">@dimen/dimen_text_common</item>
+    </style>
+
+    <!--白色标题文字样式-->
+    <style name="style_text_title_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/dimen_text_title</item>
+    </style>
+
+    <!--黑色标题文字样式-->
+    <style name="style_text_title_dark">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_dark</item>
+        <item name="android:textSize">@dimen/dimen_text_title</item>
+    </style>
+
+    <!--白色提示文字样式-->
+    <style name="style_text_tip_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/dimen_text_tip</item>
+    </style>
+
+    <!--灰色提示文字样式-->
+    <style name="style_text_tip_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_gray</item>
+        <item name="android:textSize">@dimen/dimen_text_tip</item>
+    </style>
+
+    <!--黑色提示文字样式-->
+    <style name="style_text_tip_dark">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">@dimen/dimen_text_tip</item>
+    </style>
 </resources>

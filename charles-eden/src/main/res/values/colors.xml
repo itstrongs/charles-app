@@ -6,4 +6,12 @@
 
     <color name="color_blue_translucent">#661E90FF</color>
     <color name="color_white_translucent">#66EEEEEE</color>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#FFFFFF</color>
+    <color name="color_gray">#808080</color>
+    <color name="color_red">#FE6422</color>
+    <color name="color_blue">#303F9F</color>
+    <color name="color_dark">#1a1a1a</color>
+    <color name="color_transparent">#00000000</color>
 </resources>
