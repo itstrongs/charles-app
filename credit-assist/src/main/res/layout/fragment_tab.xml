@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_no_coupon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/style_text_common_gray"
+                android:drawableTop="@mipmap/ic_no_coupon"
+                android:text="暂无优惠券，快去邀请好友领取优惠券" />
+
+            <Button
+                android:id="@+id/btn_share"
+                style="@style/style_text_common_white"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:background="@drawable/shape_text_bg_blue_25"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="邀请好友" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

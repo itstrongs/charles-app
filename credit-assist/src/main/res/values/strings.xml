@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">信用助理</string>
+    <string name="text_invite">1.活动方式：用户通过分享账户对应的活动链接，邀请信用助理新用户获取报告。\n
+        2.活动奖励：用户将活动链接分享给好友，好友首次登陆信用助理后，用户即可获得5元通用优惠券。\n
+        3.通用优惠券可用作检测费用减免；优惠券可重复获取。\n
+        4.如有任何问题可添加客服微信进行咨询。</string>
+    <string name="text_strategy">1.通过QQ群或微信群进行邀请。\n2.邀请您的家人、朋友、同学、同事</string>
+    <string name="text_credit_tip">个人信用与人的生活息息相关，关注自己的信用报告，合理优化自己的个人信用。</string>
+</resources>

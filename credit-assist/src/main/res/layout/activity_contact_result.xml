@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2461FF"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_margin"
+                    android:src="@mipmap/ic_back_white" />
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_back"
+                    android:padding="@dimen/dimen_margin"
+                    android:src="@mipmap/ic_close" />
+
+                <TextView
+                    style="@style/style_text_title_white"
+                    android:layout_centerInParent="true"
+                    android:text="紧急联系人" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_margin">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/style_text_common_white"
+                        android:text="经检测，联系人中作为您的紧急联系人" />
+
+                    <TextView
+                        android:id="@+id/text_people"
+                        style="@style/style_text_common_white"
+                        android:layout_marginTop="@dimen/dimen_margin"
+                        android:text="2人适合  1人不适合" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/img_black_result_head" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin" />
+
+        <TextView
+            style="@style/style_text_tip_gray"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/dimen_margin"
+            android:text="解读：申请贷款时，机构会对申请人的紧急联系人进行评估，为了不影响贷款通过率，建议不要选择命中风险项的联系人作为您的紧急联系人。" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

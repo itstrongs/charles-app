@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/dimen_margin_small"
+    android:paddingBottom="@dimen/dimen_margin_small">
+
+    <RadioButton
+        android:id="@+id/radio_btn_0"
+        style="@style/style_text_title_dark"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/select_main_tab_home"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="首页"
+        android:textSize="@dimen/dimen_text_tip" />
+
+    <RadioButton
+        android:id="@+id/radio_btn_1"
+        style="@style/style_text_title_dark"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/select_main_tab_list"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="福利"
+        android:textSize="@dimen/dimen_text_tip" />
+
+    <RadioButton
+        android:id="@+id/radio_btn_2"
+        style="@style/style_text_title_dark"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableTop="@drawable/select_main_tab_my"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="我的"
+        android:textSize="@dimen/dimen_text_tip" />
+</RadioGroup>

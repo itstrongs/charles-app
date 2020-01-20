@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_margin_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_white_full"
+        android:orientation="vertical"
+        android:id="@+id/layout_apply"
+        android:padding="@dimen/dimen_margin_small">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="20dp" android:layout_height="20dp"
+                    android:src="@mipmap/ic_coupon"/>
+
+            <TextView
+                    android:id="@+id/text_name"
+                    style="@style/style_text_common_dark"
+                    android:layout_marginLeft="@dimen/dimen_margin_small"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_margin_small"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/text_range"
+                    style="@style/style_text_title_white"
+                    android:textSize="21sp"
+                    android:textColor="#FE6422" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="贷款金额(元）" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:text="下卡快" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="额度高" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

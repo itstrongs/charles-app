@@ -1,2 +1,2 @@
-include ':charles-eden', ':charles-utils', ':charles-utils', ':charles-learn'
+include ':charles-eden', ':charles-utils', ':charles-utils', ':charles-learn', ':credit-assist', ':person-center'
 rootProject.name='charles-app'

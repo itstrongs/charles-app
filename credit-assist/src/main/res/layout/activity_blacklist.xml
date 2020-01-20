@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/img_bg_blacklist">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_margin"
+                    android:src="@mipmap/ic_back_white" />
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_back"
+                    android:padding="@dimen/dimen_margin"
+                    android:src="@mipmap/ic_close" />
+
+                <TextView
+                    style="@style/style_text_title_white"
+                    android:layout_centerInParent="true"
+                    android:text="黑名单" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_margin_big"
+                android:src="@mipmap/text_blacklist" />
+
+            <TextView
+                style="@style/style_text_common_white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:text="网贷频繁被拒？一定是进了网贷黑名单" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_margin"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="@dimen/dimen_margin"
+                android:background="@drawable/shape_text_frame_white_full"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <EditText
+                    android:id="@+id/edit_real_name"
+                    style="@style/style_text_common_dark"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/shape_bg_cyan_full"
+                    android:hint="请输入您的姓名"
+                    android:padding="12dp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edit_id_card"
+                    style="@style/style_text_common_dark"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:background="@drawable/shape_bg_cyan_full"
+                    android:hint="请输入您的身份证"
+                    android:padding="12dp"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edit_id_telephone"
+                    style="@style/style_text_common_dark"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:background="@drawable/shape_bg_cyan_full"
+                    android:hint="请输入您的手机号码"
+                    android:padding="12dp"
+                    android:singleLine="true" />
+
+                <TextView
+                    style="@style/style_text_tip_dark"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:drawableLeft="@mipmap/ic_select_point"
+                    android:drawablePadding="@dimen/dimen_margin_small"
+                    android:text="我阅读并同意《授权协议》" />
+
+                <Button
+                    android:id="@+id/btn_checkup"
+                    style="@style/style_text_common_white"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@drawable/shape_text_bg_blue_25"
+                    android:text="立即检测" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_margin"
+                android:background="@drawable/shape_text_frame_white_full"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_margin">
+
+                <TextView
+                    style="@style/style_text_common_dark"
+                    android:layout_gravity="center_horizontal"
+                    android:text="- 报告主要内容 -" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_margin"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="网贷拒绝风险" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="金融反欺诈检测" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="网贷申请记录" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="信贷逾期" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="个人不良记录" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="司法风险" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="金融失信风险" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="负债查询" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="用户身份风险" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="被查询次数" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="非名单风险" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="信用优化建议" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@color/color_gray_0" />
+
+                <TextView
+                    style="@style/style_text_common_dark"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:text="- 为什么找我们 -" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_margin"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:text="准确可靠"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="知名网贷机构提供支持" />
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="查询急速"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="检测结果实时生成" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:text="信息安全"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="银行级别加密保护" />
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="维度多样"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:text="多维度全方面检测" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/style_text_common_white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:layout_marginBottom="@dimen/dimen_margin"
+                android:text="腾讯大数据支持，信用分全面评测" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

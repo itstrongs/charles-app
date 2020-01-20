@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_margin"
+                android:src="@mipmap/ic_back" />
+
+            <TextView
+                style="@style/style_text_title_dark"
+                android:layout_centerInParent="true"
+                android:text="历史报告" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/dimen_margin">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_bg_gray_5"
+                android:hint="输入您的姓名"
+                android:singleLine="true"
+                android:padding="@dimen/dimen_margin_small" />
+
+            <TextView
+                style="@style/style_text_common_white"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:layout_marginLeft="@dimen/dimen_margin_small"
+                android:background="@drawable/shape_bg_cyan_full"
+                android:text="搜索"
+                android:textColor="#3A87FF" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_no"
+                style="@style/style_text_common_gray"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/img_history_bg"
+                android:text="还没有进行过检测，快去检测吧！" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_margin"
+                android:layout_marginRight="@dimen/dimen_margin"
+                android:layout_marginBottom="@dimen/dimen_margin"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_margin"
+                android:src="@mipmap/ic_back" />
+
+            <TextView
+                style="@style/style_text_title_dark"
+                android:layout_centerInParent="true"
+                android:text="忘记密码" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/edit_username"
+            style="@style/style_text_title_dark"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:background="@color/color_transparent"
+            android:hint="请输入手机号"
+            android:padding="@dimen/dimen_margin_small"
+            android:singleLine="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:background="@color/color_gray_0" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin">
+
+            <EditText
+                android:id="@+id/edit_verify_code"
+                style="@style/style_text_title_dark"
+                android:layout_width="match_parent"
+                android:background="@color/color_transparent"
+                android:hint="请输入验证码"
+                android:padding="@dimen/dimen_margin_small"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/text_get_verify_code"
+                style="@style/style_text_title_white"
+                android:layout_alignParentRight="true"
+                android:text="获取验证码"
+                android:textColor="@color/colorPrimary" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:background="@color/color_gray_0" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/style_text_title_white"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginTop="@dimen/dimen_margin_big"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:background="@drawable/shape_text_bg_blue_5"
+            android:text="下一步" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

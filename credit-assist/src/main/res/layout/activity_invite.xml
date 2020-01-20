@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/img_bg_invite"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_margin"
+                    android:src="@mipmap/ic_back_white" />
+
+                <TextView
+                    style="@style/style_text_title_white"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="邀请好友" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:src="@mipmap/text_invite" />
+
+            <TextView
+                android:id="@+id/text_share"
+                style="@style/style_text_common_white"
+                android:layout_marginTop="70dp"
+                android:background="@mipmap/ic_btn_bg_orange"
+                android:gravity="center"
+                android:text="立刻分享" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:background="@mipmap/img_text_bg_invite"
+                android:orientation="vertical"
+                android:paddingLeft="45dp"
+                android:paddingTop="50dp"
+                android:paddingRight="45dp">
+
+                <TextView
+                    style="@style/style_text_common_white"
+                    android:drawableLeft="@mipmap/ic_rule"
+                    android:drawablePadding="@dimen/dimen_margin_small"
+                    android:text="详细规则"
+                    android:textColor="#0075E6" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="@string/text_invite" />
+
+                <TextView
+                    style="@style/style_text_common_white"
+                    android:layout_marginTop="@dimen/dimen_margin_big"
+                    android:drawableLeft="@mipmap/ic_rule"
+                    android:drawablePadding="@dimen/dimen_margin_small"
+                    android:text="邀请攻略"
+                    android:textColor="#0075E6" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="@string/text_strategy" />
+
+                <TextView
+                    style="@style/style_text_common_dark"
+                    android:layout_marginTop="@dimen/dimen_margin_big"
+                    android:text="@string/text_credit_tip" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="50dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_name"
+                    style="@style/style_text_common_dark"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="xxx有限公司" />
+
+                <TextView
+                    android:id="@+id/text_desc"
+                    style="@style/style_text_common_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="接口返还状态" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:background="@color/color_gray_0" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

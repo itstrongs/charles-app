@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_margin"
+        android:src="@mipmap/ic_back" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_margin"
+        android:src="@mipmap/text_app_name" />
+
+    <EditText
+        android:id="@+id/edit_username"
+        style="@style/style_text_title_dark"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dimen_margin"
+        android:background="@color/color_transparent"
+        android:hint="请输入手机号"
+        android:padding="@dimen/dimen_margin_small"
+        android:singleLine="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_gray_0" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        style="@style/style_text_title_dark"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dimen_margin"
+        android:background="@color/color_transparent"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:padding="@dimen/dimen_margin_small"
+        android:singleLine="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_gray_0" />
+</merge>

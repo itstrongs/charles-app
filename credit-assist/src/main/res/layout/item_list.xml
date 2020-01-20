@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="20dp" android:layout_height="20dp"
+            android:src="@mipmap/ic_my_menu_0"/>
+
+            <TextView
+                    android:id="@+id/text_name"
+                    style="@style/style_text_common_dark"
+                      android:layout_marginLeft="@dimen/dimen_margin_small"
+                      android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/text_range"
+                    style="@style/style_text_title_dark"
+                    android:textColor="@color/color_red"
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:text="贷款金额(元)" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_margin"
+                android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/text_rate"
+                    style="@style/style_text_tip_gray" />
+
+                <TextView
+                        android:id="@+id/text_time"
+                    style="@style/style_text_tip_gray" />
+
+                <TextView
+                        android:id="@+id/text_deadline"
+                    style="@style/style_text_tip_gray" />
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/text_apply"
+                style="@style/style_text_common_dark"
+                android:background="@drawable/shape_text_frame_blue"
+                android:text="立即申请"
+                android:paddingLeft="@dimen/dimen_margin"
+                android:paddingRight="@dimen/dimen_margin"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <View
+              android:layout_width="match_parent"
+              android:layout_height="0.5dp"
+              android:layout_marginTop="@dimen/dimen_margin"
+              android:background="@color/color_gray_0"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

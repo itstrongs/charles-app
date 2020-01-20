@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_margin">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_head_img" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_name"
+                style="@style/style_text_common_dark"
+                android:text="李明" />
+
+            <TextView
+                android:id="@+id/text_credit_name"
+                style="@style/style_text_tip_dark"
+                android:layout_marginTop="@dimen/dimen_margin_small"
+                android:text="检测项目：贷前风控" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_look"
+            style="@style/style_text_tip_white"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_bg_cyan_full"
+            android:padding="@dimen/dimen_margin_small"
+            android:text="查看完整报告内容"
+            android:textColor="#3A87FF" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/img_home_bg" />
+
+        <TextView
+            style="@style/style_text_tip_gray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:layout_marginBottom="@dimen/dimen_margin"
+            android:text="Copyright️©2019信用助理" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_margin_small">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin_big"
+                android:src="@mipmap/text_app_name_white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_margin_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_text_frame_white_full"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dimen_margin_small">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_query" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/style_text_common_dark"
+                                android:text="超值三合一检测套餐"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/style_text_tip_gray"
+                                android:layout_marginTop="@dimen/dimen_margin_small"
+                                android:text="拒贷风险全方位解析，信用优化好帮手"
+                                android:textSize="9sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/text_detection"
+                            style="@style/style_text_common_white"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/shape_btn_bg_cyan"
+                            android:paddingLeft="@dimen/dimen_margin"
+                            android:paddingTop="5dp"
+                            android:paddingRight="@dimen/dimen_margin"
+                            android:paddingBottom="5dp"
+                            android:text="去检测"
+                            android:textColor="#3A87FF" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/color_gray_0" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_margin"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/shape_point"
+                            android:gravity="center_horizontal"
+                            android:text="反欺诈" />
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/shape_point"
+                            android:gravity="center_horizontal"
+                            android:text="黑名单" />
+
+                        <TextView
+                            style="@style/style_text_common_dark"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/shape_point"
+                            android:gravity="center_horizontal"
+                            android:text="网贷申请记录" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_home_menu_0"
+                        style="@style/style_text_common_dark"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/ic_home_menu_0"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="@dimen/dimen_margin"
+                        android:text="金融反欺诈"
+                        android:textColor="#F77030" />
+
+                    <TextView
+                        android:id="@+id/text_home_menu_1"
+                        style="@style/style_text_common_dark"
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="@dimen/dimen_margin_small"
+                        android:layout_weight="1"
+                        android:background="@mipmap/ic_home_menu_1"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="@dimen/dimen_margin"
+                        android:text="网贷黑名单"
+                        android:textColor="#3A87FF" />
+
+                    <TextView
+                        android:id="@+id/text_home_menu_2"
+                        style="@style/style_text_common_dark"
+                        android:layout_width="0dp"
+                        android:layout_marginLeft="@dimen/dimen_margin_small"
+                        android:layout_weight="1"
+                        android:background="@mipmap/ic_home_menu_2"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="@dimen/dimen_margin"
+                        android:text="网贷申请记录"
+                        android:textColor="#2FBB9C" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@drawable/shape_text_frame_white_full"
+                    android:padding="@dimen/dimen_margin">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_title_dark"
+                            android:drawableLeft="@mipmap/ic_phone"
+                            android:drawablePadding="@dimen/dimen_margin_small"
+                            android:text="通话记录检测"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="通讯污点，一秒查清 | 风控核心项，贷前必查"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_operator"
+                        style="@style/style_text_common_white"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_btn_bg_cyan"
+                        android:paddingLeft="@dimen/dimen_margin"
+                        android:paddingTop="5dp"
+                        android:paddingRight="@dimen/dimen_margin"
+                        android:paddingBottom="5dp"
+                        android:text="立即检测"
+                        android:textColor="#3A87FF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@drawable/shape_text_frame_white_full"
+                    android:padding="@dimen/dimen_margin">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_title_dark"
+                            android:drawableLeft="@mipmap/ic_people"
+                            android:drawablePadding="@dimen/dimen_margin_small"
+                            android:text="紧急联系人检测"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/style_text_tip_gray"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="联系人信用差，贷款同样被拒 | 联系人被拒风险解读"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_contacts"
+                        style="@style/style_text_common_white"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_btn_bg_cyan"
+                        android:paddingLeft="@dimen/dimen_margin"
+                        android:paddingTop="5dp"
+                        android:paddingRight="@dimen/dimen_margin"
+                        android:paddingBottom="5dp"
+                        android:text="立即检测"
+                        android:textColor="#3A87FF" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

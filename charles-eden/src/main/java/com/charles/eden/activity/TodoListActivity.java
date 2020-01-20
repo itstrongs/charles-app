@@ -152,7 +152,7 @@ public class TodoListActivity extends BaseActivity {
             TextView textName;
             View viewLine;
             CheckBox checkBox;
-            TextView btnCard;
+//            TextView btnCard;
             TextView textContent;
             TextView textDate;
             ImageView imgSetTop;
@@ -162,7 +162,7 @@ public class TodoListActivity extends BaseActivity {
                 textName = itemView.findViewById(R.id.text_name);
                 viewLine = itemView.findViewById(R.id.view_line);
                 checkBox = itemView.findViewById(R.id.check_box);
-                btnCard = itemView.findViewById(R.id.btn_card);
+//                btnCard = itemView.findViewById(R.id.btn_card);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);

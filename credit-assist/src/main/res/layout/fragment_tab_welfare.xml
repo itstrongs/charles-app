@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/style_text_title_white"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="#2461FF"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen_margin_big"
+            android:paddingBottom="@dimen/dimen_margin"
+            android:text="福利" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_gray_0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginTop="@dimen/dimen_margin"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/frame_credit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_welfare_btn_bg_0">
+
+                <TextView
+                    style="@style/style_text_title_white"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@mipmap/ic_welfare_btn_0"
+                    android:drawablePadding="@dimen/dimen_margin"
+                    android:gravity="center"
+                    android:text="信用卡" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_charges"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_margin"
+                android:layout_weight="1"
+                android:background="@mipmap/ic_welfare_btn_bg_1">
+
+                <TextView
+                    style="@style/style_text_title_white"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@mipmap/ic_welfare_btn_1"
+                    android:drawablePadding="@dimen/dimen_margin"
+                    android:gravity="center"
+                    android:text="大额分期" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_emergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:layout_marginTop="@dimen/dimen_margin_small"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:src="@mipmap/ic_welfare_btn_bg_2" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

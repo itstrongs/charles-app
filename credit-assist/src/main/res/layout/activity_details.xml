@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2948E7"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_margin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_small">
+
+                    <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dimen_margin_small"
+                        android:src="@mipmap/ic_back_white" />
+
+                    <ImageView
+                        android:id="@+id/img_close"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/img_back"
+                        android:padding="@dimen/dimen_margin_small"
+                        android:src="@mipmap/ic_close" />
+
+                    <TextView
+                        style="@style/style_text_title_white"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="反欺诈评级" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dimen_margin">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/style_text_tip_white"
+                            android:text="经腾讯大数据的全方面评估" />
+
+                        <TextView
+                            android:id="@+id/text_score_name"
+                            style="@style/style_text_common_white"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="您的反欺诈评级分数为80分" />
+
+                        <TextView
+                            android:id="@+id/text_score_desc"
+                            style="@style/style_text_tip_white"
+                            android:layout_marginTop="@dimen/dimen_margin_small"
+                            android:text="综合拒贷率为80%" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/text_score"
+                        style="@style/style_text_title_white"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/dimen_margin_small"
+                        android:background="@mipmap/ic_bg_score"
+                        android:gravity="center"
+                        android:text="80分" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:background="@drawable/shape_text_frame_white"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dimen_margin_small">
+
+                    <TextView
+                        style="@style/style_text_tip_white"
+                        android:text="您的反欺诈评级分数一般，请保持良好的借贷行为，逐步优化您的反欺诈评级分数。" />
+
+                    <TextView
+                        style="@style/style_text_tip_white"
+                        android:layout_marginTop="@dimen/dimen_margin"
+                        android:text="此项检测结果以0-100分值形式展示\n0-60分良好，61-80分一般，81-100分较差" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_get"
+                    style="@style/style_text_common_white"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@drawable/shape_bg_white_full"
+                    android:text="领取福利"
+                    android:textColor="#1D49F0"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_margin">
+
+                <TextView
+                    style="@style/style_text_title_dark"
+                    android:text="是否命中风险行为规则："
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/style_text_common_gray"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:text="疑似资料伪造包装"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="涉嫌从事包装客户资料，伪造客户资料\n冒用客户资料，套取银行信贷机构风险政策的从业人员" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@color/color_gray_0" />
+
+                <TextView
+                    style="@style/style_text_common_gray"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:text="疑似涉黄社恐行为"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="疑似涉黄社恐行为" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@color/color_gray_0" />
+
+                <TextView
+                    style="@style/style_text_common_gray"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:text="疑似资料伪造包装"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/style_text_tip_gray"
+                    android:layout_marginTop="@dimen/dimen_margin_small"
+                    android:text="涉嫌从事包装客户资料，伪造客户资料\n冒用客户资料，套取银行信贷机构风险政策的从业人员" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/dimen_margin"
+                    android:background="@color/color_gray_0" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

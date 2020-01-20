@@ -150,39 +150,33 @@ public class NoteListActivity extends BaseActivity {
             switch (noteTypeBo.getType()) {
                 case 0:
                     holder.textContent.setVisibility(View.VISIBLE);
-                    holder.textContent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(mContext, NoteDetailsActivity.class);
-                            intent.putExtra("data", recordPlanBos.get(position));
-                            startActivity(intent);
-                        }
+                    holder.textContent.setOnClickListener(v -> {
+                        Intent intent = new Intent(mContext, NoteDetailsActivity.class);
+                        intent.putExtra("data", recordPlanBos.get(position));
+                        startActivity(intent);
                     });
                     break;
                 case 1:
                     holder.checkBox.setVisibility(View.VISIBLE);
                     holder.checkBox.setChecked(notePlanBo.getState() != null && notePlanBo.getState() == 1);
                     holder.viewLine.setVisibility(notePlanBo.getState() == null || notePlanBo.getState() == 0 ? View.GONE : View.VISIBLE);
-                    holder.checkBox.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
-                            notePlanBo.setState(holder.checkBox.isChecked() ? 1 : 0);
-                            RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
-                                @Override
-                                public Observable<HttpResult> getObservable(HttpService httpService) {
-                                    return httpService.addRecord(notePlanBo);
-                                }
+                    holder.checkBox.setOnClickListener(v -> {
+                        holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
+                        notePlanBo.setState(holder.checkBox.isChecked() ? 1 : 0);
+                        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                            @Override
+                            public Observable<HttpResult> getObservable(HttpService httpService) {
+                                return httpService.addRecord(notePlanBo);
+                            }
 
-                                @Override
-                                public void onResult(HttpResult result) {
-                                }
-                            });
-                        }
+                            @Override
+                            public void onResult(HttpResult result) {
+                            }
+                        });
                     });
                     break;
                 case 2:
-                    holder.btnCard.setVisibility(View.VISIBLE);
+//                    holder.btnCard.setVisibility(View.VISIBLE);
                     break;
             }
             holder.textContent.setText(notePlanBo.getContent());
@@ -199,7 +193,7 @@ public class NoteListActivity extends BaseActivity {
             TextView textName;
             View viewLine;
             CheckBox checkBox;
-            TextView btnCard;
+//            TextView btnCard;
             TextView textContent;
             TextView textDate;
             ImageView imgSetTop;
@@ -209,7 +203,7 @@ public class NoteListActivity extends BaseActivity {
                 textName = itemView.findViewById(R.id.text_name);
                 viewLine = itemView.findViewById(R.id.view_line);
                 checkBox = itemView.findViewById(R.id.check_box);
-                btnCard = itemView.findViewById(R.id.btn_card);
+//                btnCard = itemView.findViewById(R.id.btn_card);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);

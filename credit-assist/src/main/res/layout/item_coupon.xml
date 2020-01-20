@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@mipmap/ic_coupon_money_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_money"
+            style="@style/style_text_title_white"
+            android:textSize="25sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="24dp"
+            android:text="¥5.00" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="48dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_name"
+                style="@style/style_text_common_dark"
+                android:text="通用优惠券" />
+
+            <TextView
+                android:id="@+id/text_validity"
+                style="@style/style_text_tip_gray"
+                android:layout_marginTop="@dimen/dimen_margin_small"
+                android:text="有效期:2019-01-24-2019-06-14" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_gray_0" />
+
+        <TextView
+            android:id="@+id/text_use"
+            style="@style/style_text_tip_dark"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_margin"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/dimen_margin"
+            android:text="立\n即\n使\n用"
+            android:textColor="#3A87FF" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
