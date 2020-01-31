@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
@@ -40,6 +41,8 @@ public class NoteFragment extends BaseFragment {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerViewParty;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private NoteAdapter mPartyAdapter;
     private List<NoteBo> noteBos;
@@ -62,6 +65,7 @@ public class NoteFragment extends BaseFragment {
 //            }
 //        });
         getRecordPlanType();
+        swipeRefreshLayout.setOnRefreshListener(this::initData);
     }
 
     private void getRecordPlanType() {
@@ -73,6 +77,7 @@ public class NoteFragment extends BaseFragment {
 
             @Override
             public void onResult(HttpResult result) {
+                swipeRefreshLayout.setRefreshing(false);
                 noteBos = JSONArray.parseArray(result.getStringData(), NoteBo.class);
                 if (noteBos != null && noteBos.size() > 0) {
                     mPartyAdapter.notifyDataSetChanged();
@@ -159,8 +164,8 @@ public class NoteFragment extends BaseFragment {
             NoteBo noteBo = noteBos.get(position);
             holder.textName.setText(noteBo.getName());
 //            if (noteBo.get()) {
-                holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                holder.imgSetTop.setVisibility(View.VISIBLE);
+            holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            holder.imgSetTop.setVisibility(View.VISIBLE);
 //            }
             holder.textDesc.setText(noteBo.getNickname());
             holder.layoutHead.setOnClickListener(new View.OnClickListener() {

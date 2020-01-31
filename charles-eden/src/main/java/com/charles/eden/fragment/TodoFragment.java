@@ -2,20 +2,27 @@ package com.charles.eden.fragment;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
+import com.charles.eden.activity.MainActivity;
 import com.charles.eden.activity.TodoListActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
@@ -43,6 +50,8 @@ public class TodoFragment extends BaseFragment {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private MyAdapter mMyAdapter;
     private List<NoteTypeBo> mNoteTypeBo;
@@ -62,6 +71,7 @@ public class TodoFragment extends BaseFragment {
             intent.putExtra("note_type_name", mNoteTypeBo.get(position).getName());
             startActivity(intent);
         });
+        swipeRefreshLayout.setOnRefreshListener(this::initData);
     }
 
     @Override
@@ -74,6 +84,7 @@ public class TodoFragment extends BaseFragment {
 
             @Override
             public void onResult(HttpResult result) {
+                swipeRefreshLayout.setRefreshing(false);
                 mNoteTypeBo = JSONArray.parseArray(result.getStringData(), NoteTypeBo.class);
                 Logger.d("请求成功，size = " + mNoteTypeBo.size());
                 if (mNoteTypeBo != null && mNoteTypeBo.size() > 0) {
@@ -149,9 +160,48 @@ public class TodoFragment extends BaseFragment {
                     mOnItemClickListener.onItemClickListener(position);
                 }
             });
+            holder.imgMore.setOnClickListener(v -> {
+                View view = LayoutInflater.from(mContext).inflate(R.layout.popup_item, null, false);
+                ImageView imgAlert = view.findViewById(R.id.img_alert);
+                ImageView imgSetTop = view.findViewById(R.id.img_set_top);
+                ImageView imgDelete = view.findViewById(R.id.img_delete);
+                final PopupWindow popWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                popWindow.setTouchable(true);
+                popWindow.setTouchInterceptor((v1, event) -> false);
+                popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+                popWindow.showAsDropDown(v, 50, 0);
+                imgAlert.setOnClickListener(v12 -> {
+                    Toast.makeText(mContext, "你点击了嘻嘻~", Toast.LENGTH_SHORT).show();
+                    popWindow.dismiss();
+                });
+                imgSetTop.setOnClickListener(v13 -> {
+                    Toast.makeText(mContext, "你点击了呵呵~", Toast.LENGTH_SHORT).show();
+                    popWindow.dismiss();
+                });
+                imgDelete.setOnClickListener(v13 -> {
+//                    RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+//                        @Override
+//                        public Observable<HttpResult> getObservable(HttpService httpService) {
+//                            NoteTypeBo noteTypeBo = new NoteTypeBo();
+//                            noteTypeBo.setName(typeName);
+//                            noteTypeBo.setDescription(typeDesc);
+//                            noteTypeBo.setType(1);
+//                            return httpService.addNoteType(noteTypeBo);
+//                        }
+//
+//                        @Override
+//                        public void onResult(HttpResult result) {
+//                            ToastUtils.show(mContext, result.getMsg());
+//                            initData();
+//                        }
+//                    });
+                    Toast.makeText(mContext, "你点击了删除~", Toast.LENGTH_SHORT).show();
+                    popWindow.dismiss();
+                });
+            });
         }
 
-        public void setOnItemClickListener(RecyclerItemClickListener listener) {
+        void setOnItemClickListener(RecyclerItemClickListener listener) {
             mOnItemClickListener = listener;
         }
 

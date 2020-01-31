@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
+
         android:scaleType="fitXY" />
 
     <LinearLayout
@@ -89,6 +90,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/img_illustration"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dimen_margin"
+                android:layout_weight="1"
+                android:src="@drawable/img_bg"/>
+
             <TextView
                 android:id="@+id/text_content"
                 android:layout_width="match_parent"
@@ -101,13 +110,6 @@
                 android:text="又一个四季在轮回\n而我一无所获的坐在街头\n只有理想在支撑着那些麻木的血肉。"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/dimen_margin"
-                android:layout_weight="1"
-                android:visibility="gone" />
         </LinearLayout>
 
         <TextView

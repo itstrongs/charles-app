@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.charles.eden.R;
 import com.charles.eden.activity.LoginActivity;
 import com.charles.eden.activity.MainActivity;
+import com.charles.eden.activity.PhotoActivity;
 import com.charles.eden.model.ConstantPool;
 import com.charles.utils.SPHelper;
 import com.charles.utils.ToastUtils;
@@ -56,7 +57,7 @@ public class MyFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.text_switch_server, R.id.text_logout})
+    @OnClick({R.id.text_switch_server, R.id.text_logout, R.id.text_photo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.text_switch_server:
@@ -66,9 +67,12 @@ public class MyFragment extends BaseFragment {
             case R.id.text_logout:
                 SPHelper.putBoolean(mContext, ConstantPool.SP_IS_LOGIN, false);
                 SPHelper.putString(mContext, ConstantPool.SP_USERNAME, "");
-                SPHelper.putLong(mContext, ConstantPool.SP_USER_ID, null);
+                SPHelper.putLong(mContext, ConstantPool.SP_USER_ID, 0L);
                 SPHelper.putString(mContext, ConstantPool.SP_AUTHORIZATION, "");
                 ((MainActivity) mActivity).switchFragment(NoteFragment.class);
+                break;
+            case R.id.text_photo:
+                startActivity(new Intent(mContext, PhotoActivity.class));
                 break;
         }
     }

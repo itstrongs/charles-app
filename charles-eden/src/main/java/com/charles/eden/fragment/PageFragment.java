@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.charles.eden.R;
 import com.charles.eden.model.dto.MicroSentenceDto;
+import com.charles.utils.ResUtils;
 import com.charles.utils.base.BaseFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +33,7 @@ public class PageFragment extends BaseFragment {
     private TextView mTextSource;
     private TextView mTextContent;
     private TextView mTextFeel;
+    private ImageView mImgIllustration;
 //    private ImageView mImgBg;
 
     private MicroSentenceDto mMicroSentenceDto;
@@ -41,10 +45,9 @@ public class PageFragment extends BaseFragment {
 
     public PageFragment(MicroSentenceDto microSentenceDto) {
         this.mMicroSentenceDto = microSentenceDto;
-        this.mImgUrl.add("http://pwkij4wg0.bkt.clouddn.com/WechatIMG12.jpeg");
-        this.mImgUrl.add("http://pwkij4wg0.bkt.clouddn.com/WechatIMG10.jpeg");
-        this.mImgUrl.add("http://pwkij4wg0.bkt.clouddn.com/WechatIMG11.jpeg");
-        this.mImgUrl.add("http://pva7sac9n.bkt.clouddn.com/FqX43SWwu3R8tT7xs_sz--G0fw1F");
+        this.mImgUrl.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577010287509&di=aad4cbc73a62d2a2a249e22eb17254ad&imgtype=0&src=http%3A%2F%2Fpic2.zhimg.com%2F50%2Fv2-1c3bd9fe6c6a28c5ca3a678549dfde28_hd.jpg");
+        this.mImgUrl.add("https://pic2.zhimg.com/80/v2-86cf45e7f34a38f5f4e20559f7d6fb35_hd.jpg");
+        this.mImgUrl.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577012344545&di=79095a81296c54a950cbe4c8db05a10d&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201506%2F04%2F20150604214559_BKmFJ.jpeg");
     }
 
     @Override
@@ -58,8 +61,9 @@ public class PageFragment extends BaseFragment {
         mTextSource = mContentView.findViewById(R.id.text_source);
         mTextContent = mContentView.findViewById(R.id.text_content);
         mTextFeel = mContentView.findViewById(R.id.text_feel);
+        mImgIllustration = mContentView.findViewById(R.id.img_illustration);
 //        mImgBg = mContentView.findViewById(R.id.img_bg);
-//        Picasso.with(mContext).load(mImgUrl.get(new Random().nextInt(4))).into(imgBg);
+        Picasso.with(mContext).load(mImgUrl.get(new Random().nextInt(3))).into(mImgIllustration);
         mTextCategory.setText("#" + mMicroSentenceDto.getCategory() + "#");
         mTextSource.setText("+" + mMicroSentenceDto.getSource());
         mTextContent.setText(mMicroSentenceDto.getContent());

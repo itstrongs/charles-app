@@ -66,4 +66,5 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.qiniu:qiniu-android-sdk:7.5.0'
 }

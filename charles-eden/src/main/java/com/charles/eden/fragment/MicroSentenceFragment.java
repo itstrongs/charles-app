@@ -14,6 +14,7 @@ import com.charles.eden.model.dto.MicroSentenceDto;
 import com.charles.utils.base.BaseFragment;
 import com.charles.utils.http.HttpResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,28 +43,9 @@ public class MicroSentenceFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        mFragmentList = new ArrayList<>();
         loadData();
-//        loadLocalData();
     }
-
-//    private void loadLocalData() {
-//        WewordList wewordList = WewordHelper.getInstance().getWewordList(mContext);
-//        mFragmentList = new ArrayList<>();
-//        for (WewordList.WewordBean dataBean : wewordList.getWeword()) {
-//            mFragmentList.add(new PageFragment(dataBean));
-//        }
-//        mViewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
-//            @Override
-//            public int getCount() {
-//                return mFragmentList.size();
-//            }
-//
-//            @Override
-//            public Fragment getItem(int position) {
-//                return mFragmentList.get(position);
-//            }
-//        });
-//    }
 
     private void loadData() {
         RetrofitHelper.INSTANCE.post(getActivity(), new RetrofitHelper.RetrofitCallback() {
@@ -76,7 +58,9 @@ public class MicroSentenceFragment extends BaseFragment {
             @Override
             public void onResult(HttpResult result) {
                 microSentenceDtos = JSONArray.parseArray(result.getStringData(), MicroSentenceDto.class);
-                mFragmentList = microSentenceDtos.stream().map(PageFragment::new).collect(Collectors.toList());
+                for (MicroSentenceDto dto : microSentenceDtos) {
+                    mFragmentList.add(new PageFragment(dto));
+                }
                 if (microSentenceDtos != null && microSentenceDtos.size() > 0) {
                     viewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
                     @Override
@@ -92,27 +76,5 @@ public class MicroSentenceFragment extends BaseFragment {
                 }
             }
         });
-//        OkHttpHelper.getInstance().get(getActivity(), ConstantHolder.URL_GET_ALL_EMOTION, new OkHttpHelper.HttpCallback() {
-//            @Override
-//            public void onSuccess(String result) {
-//                Weword emotion = new Gson().fromJson(result, Weword.class);
-//                List<Weword.EmotionBean> emotion1 = emotion.getEmotion();
-//                mFragmentList = new ArrayList<>();
-//                for (Weword.EmotionBean dataBean : emotion1) {
-//                    mFragmentList.add(new PageFragment(dataBean));
-//                }
-//                mViewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
-//                    @Override
-//                    public int getCount() {
-//                        return mFragmentList.size();
-//                    }
-//
-//                    @Override
-//                    public Fragment getItem(int position) {
-//                        return mFragmentList.get(position);
-//                    }
-//                });
-//            }
-//        });
     }
 }

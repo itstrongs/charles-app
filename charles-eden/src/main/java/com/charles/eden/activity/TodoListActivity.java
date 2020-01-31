@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
@@ -42,6 +43,8 @@ public class TodoListActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.text_title)
     TextView textTitle;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private List<TodoPlanBo> mTodoPlanBo;
     private long mNoteTypeId;
@@ -56,12 +59,13 @@ public class TodoListActivity extends BaseActivity {
         recyclerView.setAdapter(mMyAdapter = new MyAdapter());
         mNoteTypeId = getIntent().getLongExtra("note_type_id", 0L);
         textTitle.setText(getIntent().getStringExtra("note_type_name"));
+        swipeRefreshLayout.setOnRefreshListener(this::initData);
         if (mNoteTypeId != 0L) {
-            getDate();
+            initData();
         }
     }
 
-    private void getDate() {
+    private void initData() {
         RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
@@ -70,6 +74,7 @@ public class TodoListActivity extends BaseActivity {
 
             @Override
             public void onResult(HttpResult result) {
+                swipeRefreshLayout.setRefreshing(false);
                 mTodoPlanBo = JSONArray.parseArray(result.getStringData(), TodoPlanBo.class);
                 if (mTodoPlanBo != null && mTodoPlanBo.size() > 0) {
                     mMyAdapter.notifyDataSetChanged();
@@ -85,22 +90,20 @@ public class TodoListActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.img_add:
-                DialogHelper.showDialog(mActivity, (content) -> {
-                    RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
-                        @Override
-                        public Observable<HttpResult> getObservable(HttpService httpService) {
-                            TodoPlanBo todoPlanBo = new TodoPlanBo();
-                            todoPlanBo.setTypeId(mNoteTypeId);
-                            todoPlanBo.setContent(content);
-                            return httpService.todoPlan(todoPlanBo);
-                        }
+                DialogHelper.showDialog(mActivity, (content) -> RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                    @Override
+                    public Observable<HttpResult> getObservable(HttpService httpService) {
+                        TodoPlanBo todoPlanBo = new TodoPlanBo();
+                        todoPlanBo.setTypeId(mNoteTypeId);
+                        todoPlanBo.setContent(content);
+                        return httpService.todoPlan(todoPlanBo);
+                    }
 
-                        @Override
-                        public void onResult(HttpResult result) {
-                            getDate();
-                        }
-                    });
-                });
+                    @Override
+                    public void onResult(HttpResult result) {
+                        initData();
+                    }
+                }));
                 break;
         }
     }
@@ -140,6 +143,19 @@ public class TodoListActivity extends BaseActivity {
             });
             holder.textContent.setText(todoPlanBo.getContent());
             holder.textDate.setText(todoPlanBo.getUpdatedAt());
+            holder.imgEdit.setOnClickListener(v -> DialogHelper.showDialog(mActivity, todoPlanBo.getContent(), "", (content) -> RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                @Override
+                public Observable<HttpResult> getObservable(HttpService httpService) {
+                    todoPlanBo.setTypeId(mNoteTypeId);
+                    todoPlanBo.setContent(content);
+                    return httpService.todoPlan(todoPlanBo);
+                }
+
+                @Override
+                public void onResult(HttpResult result) {
+                    initData();
+                }
+            })));
         }
 
         @Override
@@ -152,20 +168,20 @@ public class TodoListActivity extends BaseActivity {
             TextView textName;
             View viewLine;
             CheckBox checkBox;
-//            TextView btnCard;
             TextView textContent;
             TextView textDate;
             ImageView imgSetTop;
+            ImageView imgEdit;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 textName = itemView.findViewById(R.id.text_name);
                 viewLine = itemView.findViewById(R.id.view_line);
                 checkBox = itemView.findViewById(R.id.check_box);
-//                btnCard = itemView.findViewById(R.id.btn_card);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);
+                imgEdit = itemView.findViewById(R.id.img_edit);
             }
         }
     }

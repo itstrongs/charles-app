@@ -32,6 +32,9 @@ public interface HttpService {
     @POST("/note-type")
     Observable<HttpResult> addNoteType(@Body NoteTypeBo noteTypeBo);
 
+    @DELETE("/note-type")
+    Observable<HttpResult> noteType(@Body NoteTypeBo noteTypeBo);
+
     @POST("/note-plan")
     Observable<HttpResult> addRecord(@Body NotePlanBo recordPlanBo);
 
@@ -64,4 +67,7 @@ public interface HttpService {
 
     @PUT("/todo-plan/{id}/is-finish")
     Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
+
+    @GET("/photo-story/list")
+    Observable<HttpResult> photoStoryList();
 }

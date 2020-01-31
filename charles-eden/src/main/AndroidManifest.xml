@@ -45,5 +45,15 @@
             android:name=".activity.TodoListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.imgFullScreen" />
+
+        <activity
+            android:name=".activity.PhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.imgFullScreen" />
+
+        <activity
+            android:name=".activity.PhotoDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.imgFullScreen" />
     </application>
 </manifest>
