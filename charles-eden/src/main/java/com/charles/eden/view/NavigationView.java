@@ -26,6 +26,7 @@ public class NavigationView extends RadioGroup implements View.OnClickListener {
         LayoutInflater.from(context).inflate(R.layout.navigation_view, this);
         findViewById(R.id.radio_menu_note).setOnClickListener(this);
         findViewById(R.id.radio_menu_todo).setOnClickListener(this);
+        findViewById(R.id.radio_photo_story).setOnClickListener(this);
         findViewById(R.id.radio_menu_sentence).setOnClickListener(this);
         findViewById(R.id.radio_menu_friends).setOnClickListener(this);
         findViewById(R.id.radio_menu_my).setOnClickListener(this);

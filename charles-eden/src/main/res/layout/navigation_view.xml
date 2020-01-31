@@ -32,6 +32,19 @@
         android:textSize="12sp" />
 
     <RadioButton
+        android:id="@+id/radio_photo_story"
+        style="@style/style_text_title_white"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:drawableTop="@drawable/ic_photo_story"
+        android:drawablePadding="3dp"
+        android:gravity="center_horizontal"
+        android:text="照片故事"
+        android:textSize="12sp" />
+
+    <RadioButton
         android:id="@+id/radio_menu_sentence"
         style="@style/style_text_title_white"
         android:layout_width="0dp"

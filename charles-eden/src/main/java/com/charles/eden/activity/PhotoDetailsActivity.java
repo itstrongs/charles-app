@@ -1,6 +1,5 @@
 package com.charles.eden.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.model.bo.PhotoStoryBo;
-import com.charles.utils.StringUtils;
+import com.charles.utils.Logger;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,11 +41,13 @@ public class PhotoDetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_photo_details);
         ButterKnife.bind(this);
         String imageUrls = getIntent().getStringExtra("image_urls");
+        Logger.d("imageUrls=" + imageUrls);
         List<PhotoStoryBo> photoStoryBos = JSON.parseArray(imageUrls, PhotoStoryBo.class);
         ArrayList<View> imageViews = new ArrayList<>();
         for (PhotoStoryBo o : photoStoryBos) {
             View view = View.inflate(this, R.layout.item_photo_details, null);
-            ImageView imageView = view.findViewById(R.id.image_view);
+            ImageView imageView = view.findViewById(R.id.img_details);
+            Logger.d("o.getPhotoUrl()=" + o.getPhotoUrl());
             Picasso.with(this).load(o.getPhotoUrl()).into(imageView);
             TextView textImpression = view.findViewById(R.id.text_impression);
             textImpression.setText(o.getImpression());

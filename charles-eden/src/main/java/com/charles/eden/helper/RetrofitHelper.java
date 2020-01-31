@@ -23,7 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.charles.eden.model.ConstantPool.URL_BASE_RELEASE;
+import static com.charles.eden.model.ConstantPool.URL_BASE;
 
 /**
  * Created by 刘奉强 on 2018/11/29 20:13
@@ -51,7 +51,7 @@ public enum RetrofitHelper {
         activity.addContentView(frameLayout, params);
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(URL_BASE_RELEASE)
+                    .baseUrl(URL_BASE)
                     .client(getOkHttpClient())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())

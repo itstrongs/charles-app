@@ -79,8 +79,7 @@
 
         <TextView
             android:id="@+id/text_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/style_text_common_white"
             android:text="+ 《理想》. #赵雷" />
 
         <LinearLayout
@@ -96,7 +95,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dimen_margin"
                 android:layout_weight="1"
-                android:src="@drawable/img_bg"/>
+                android:src="@drawable/img_bg" />
 
             <TextView
                 android:id="@+id/text_content"

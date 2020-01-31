@@ -1,5 +1,6 @@
 package com.charles.eden.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,9 +11,12 @@ import com.charles.eden.fragment.FriendsFragment;
 import com.charles.eden.fragment.MicroSentenceFragment;
 import com.charles.eden.fragment.MyFragment;
 import com.charles.eden.fragment.NoteFragment;
+import com.charles.eden.fragment.PhotoStoryFragment;
 import com.charles.eden.fragment.TodoFragment;
 import com.charles.eden.helper.BaseActivity;
+import com.charles.eden.model.ConstantPool;
 import com.charles.eden.view.NavigationView;
+import com.charles.utils.SPHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,12 +42,18 @@ public class MainActivity extends BaseActivity {
                 switchFragment(NoteFragment.class);
             } else if (resId == R.id.radio_menu_todo) {
                 switchFragment(TodoFragment.class);
+            } else if (resId == R.id.radio_photo_story) {
+                switchFragment(PhotoStoryFragment.class);
             } else if (resId == R.id.radio_menu_sentence) {
                 switchFragment(MicroSentenceFragment.class);
             } else if (resId == R.id.radio_menu_friends) {
                 switchFragment(FriendsFragment.class);
             } else if (resId == R.id.radio_menu_my) {
-                switchFragment(MyFragment.class);
+                if (SPHelper.getBoolean(mContext, ConstantPool.SP_IS_LOGIN)) {
+                    switchFragment(MyFragment.class);
+                } else {
+                    startActivity(new Intent(mActivity, LoginActivity.class));
+                }
             }
         });
         initFragment();

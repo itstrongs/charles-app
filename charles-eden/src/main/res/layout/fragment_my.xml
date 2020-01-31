@@ -77,10 +77,10 @@
 
     <View style="@style/style_view_common_line" />
 
-    <TextView
-        android:id="@+id/text_photo"
-        style="@style/style_text_setting_item"
-        android:text="照片故事" />
+<!--    <TextView-->
+<!--        android:id="@+id/text_photo"-->
+<!--        style="@style/style_text_setting_item"-->
+<!--        android:text="照片故事" />-->
 
-    <View style="@style/style_view_common_line" />
+<!--    <View style="@style/style_view_common_line" />-->
 </LinearLayout>

@@ -1,23 +1,22 @@
-package com.charles.eden.activity;
+package com.charles.eden.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
-import com.charles.eden.helper.BaseActivity;
+import com.charles.eden.activity.PhotoDetailsActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.bo.PhotoStoryBo;
+import com.charles.utils.base.BaseFragment;
 import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.RecyclerItemClickListener;
 import com.squareup.picasso.Picasso;
@@ -25,17 +24,15 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.reactivex.Observable;
 
 /**
  * description
  *
  * @author liufengqiang <fq1781@163.com>
- * @date 2020-01-22 21:49
+ * @date 2020-01-31 19:49
  */
-public class PhotoActivity extends BaseActivity {
+public class PhotoStoryFragment extends BaseFragment {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -44,25 +41,15 @@ public class PhotoActivity extends BaseActivity {
     private List<PhotoStoryBo> photoStoryBos;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo);
-        ButterKnife.bind(this);
+    protected int setFragmentLayout() {
+        return R.layout.fragment_photo_story;
+    }
+
+    @Override
+    protected void initView() {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mMyAdapter = new MyAdapter());
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                layoutManager.invalidateSpanAssignments();
-//                if (!recycleView.canScrollVertically(1) && !mIsLoading) {
-//                    Logger.d("底部上拉加载更多");
-//                    mIsLoading = true;
-//                    mPresenter.doLoadMoreData();
-//                }
-//            }
-//        });
         mMyAdapter.setOnItemClickListener(this::showGirlDetails);
         RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
             @Override
@@ -87,29 +74,18 @@ public class PhotoActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @OnClick({R.id.img_back, R.id.img_add})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_back:
-                onBackPressed();
-                break;
-            case R.id.img_add:
-                break;
-        }
-    }
-
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         private RecyclerItemClickListener mOnItemClickListener;
 
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyViewHolder(View.inflate(parent.getContext(), R.layout.item_list_girl, null));
+        public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MyAdapter.MyViewHolder(View.inflate(parent.getContext(), R.layout.item_list_girl, null));
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, final int position) {
-            MyViewHolder girlHolder = holder;
+        public void onBindViewHolder(MyAdapter.MyViewHolder holder, final int position) {
+            MyAdapter.MyViewHolder girlHolder = holder;
             PhotoStoryBo photoStoryBo = photoStoryBos.get(position);
             Picasso.with(mContext).load(photoStoryBo.getPhotoUrl()).into(girlHolder.imageView);
             girlHolder.textImpression.setText(photoStoryBo.getImpression());
