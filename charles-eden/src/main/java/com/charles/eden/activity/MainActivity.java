@@ -11,8 +11,8 @@ import com.charles.eden.fragment.FriendsFragment;
 import com.charles.eden.fragment.MicroSentenceFragment;
 import com.charles.eden.fragment.MyFragment;
 import com.charles.eden.fragment.NoteFragment;
-import com.charles.eden.fragment.PhotoStoryFragment;
-import com.charles.eden.fragment.TodoFragment;
+import com.charles.eden.fragment.PhotoStoryTabFragment;
+import com.charles.eden.fragment.TodoTabFragment;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.model.ConstantPool;
 import com.charles.eden.view.NavigationView;
@@ -41,9 +41,9 @@ public class MainActivity extends BaseActivity {
             if (resId == R.id.radio_menu_note) {
                 switchFragment(NoteFragment.class);
             } else if (resId == R.id.radio_menu_todo) {
-                switchFragment(TodoFragment.class);
+                switchFragment(TodoTabFragment.class);
             } else if (resId == R.id.radio_photo_story) {
-                switchFragment(PhotoStoryFragment.class);
+                switchFragment(PhotoStoryTabFragment.class);
             } else if (resId == R.id.radio_menu_sentence) {
                 switchFragment(MicroSentenceFragment.class);
             } else if (resId == R.id.radio_menu_friends) {

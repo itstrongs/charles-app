@@ -3,33 +3,27 @@ package com.charles.eden.fragment;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
-import com.charles.eden.activity.MainActivity;
 import com.charles.eden.activity.TodoListActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.utils.Logger;
-import com.charles.utils.StringUtils;
-import com.charles.utils.ToastUtils;
 import com.charles.utils.base.BaseFragment;
 import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.RecyclerItemClickListener;
@@ -37,21 +31,22 @@ import com.charles.utils.view.RecyclerItemClickListener;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import io.reactivex.Observable;
+
+import static com.charles.eden.model.ConstantPool.ARG_SECTION_NUMBER;
 
 /**
  * description
  *
  * @author liufengqiang <fq1781@163.com>
- * @date 2019-12-22 14:16
+ * @date 2020-02-01 14:18
  */
 public class TodoFragment extends BaseFragment {
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     private MyAdapter mMyAdapter;
     private List<NoteTypeBo> mNoteTypeBo;
@@ -59,6 +54,14 @@ public class TodoFragment extends BaseFragment {
     @Override
     protected int setFragmentLayout() {
         return R.layout.fragment_todo;
+    }
+
+    static TodoFragment newInstance(int index) {
+        TodoFragment fragment = new TodoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_SECTION_NUMBER, index);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -92,51 +95,6 @@ public class TodoFragment extends BaseFragment {
                 }
             }
         });
-    }
-
-    @OnClick({R.id.img_add})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_add:
-                showDialog();
-                break;
-        }
-    }
-
-    private void showDialog() {
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_add_type, null, false);
-        AlertDialog.Builder editDialog = new AlertDialog.Builder(mContext);
-        editDialog.setTitle("添加分类");
-        editDialog.setIcon(R.mipmap.ic_launcher);
-        editDialog.setView(view);
-        editDialog.setPositiveButton("添加", (dialog, which) -> {
-            EditText editName = view.findViewById(R.id.edit_name);
-            EditText editDesc = view.findViewById(R.id.edit_desc);
-            final String typeName = editName.getText().toString().trim();
-            final String typeDesc = editDesc.getText().toString().trim();
-            if (StringUtils.isEmpty(typeName)) {
-                ToastUtils.show(mContext, "类型名不能为空");
-                return;
-            }
-            RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
-                @Override
-                public Observable<HttpResult> getObservable(HttpService httpService) {
-                    NoteTypeBo noteTypeBo = new NoteTypeBo();
-                    noteTypeBo.setName(typeName);
-                    noteTypeBo.setDescription(typeDesc);
-                    noteTypeBo.setType(1);
-                    return httpService.addNoteType(noteTypeBo);
-                }
-
-                @Override
-                public void onResult(HttpResult result) {
-                    ToastUtils.show(mContext, result.getMsg());
-                    initData();
-                }
-            });
-            dialog.dismiss();
-        });
-        editDialog.create().show();
     }
 
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -179,22 +137,6 @@ public class TodoFragment extends BaseFragment {
                     popWindow.dismiss();
                 });
                 imgDelete.setOnClickListener(v13 -> {
-//                    RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
-//                        @Override
-//                        public Observable<HttpResult> getObservable(HttpService httpService) {
-//                            NoteTypeBo noteTypeBo = new NoteTypeBo();
-//                            noteTypeBo.setName(typeName);
-//                            noteTypeBo.setDescription(typeDesc);
-//                            noteTypeBo.setType(1);
-//                            return httpService.addNoteType(noteTypeBo);
-//                        }
-//
-//                        @Override
-//                        public void onResult(HttpResult result) {
-//                            ToastUtils.show(mContext, result.getMsg());
-//                            initData();
-//                        }
-//                    });
                     Toast.makeText(mContext, "你点击了删除~", Toast.LENGTH_SHORT).show();
                     popWindow.dismiss();
                 });

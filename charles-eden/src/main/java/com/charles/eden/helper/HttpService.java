@@ -69,5 +69,5 @@ public interface HttpService {
     Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
 
     @GET("/photo-story/list")
-    Observable<HttpResult> photoStoryList();
+    Observable<HttpResult> photoStoryList(@Query("type") Integer type);
 }

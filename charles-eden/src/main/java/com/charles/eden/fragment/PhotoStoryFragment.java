@@ -1,6 +1,7 @@
 package com.charles.eden.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import com.charles.eden.activity.PhotoDetailsActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.bo.PhotoStoryBo;
+import com.charles.utils.Logger;
 import com.charles.utils.base.BaseFragment;
 import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.RecyclerItemClickListener;
@@ -26,12 +28,8 @@ import java.util.List;
 import butterknife.BindView;
 import io.reactivex.Observable;
 
-/**
- * description
- *
- * @author liufengqiang <fq1781@163.com>
- * @date 2020-01-31 19:49
- */
+import static com.charles.eden.model.ConstantPool.ARG_SECTION_NUMBER;
+
 public class PhotoStoryFragment extends BaseFragment {
 
     @BindView(R.id.recycler_view)
@@ -39,6 +37,15 @@ public class PhotoStoryFragment extends BaseFragment {
 
     private MyAdapter mMyAdapter;
     private List<PhotoStoryBo> photoStoryBos;
+    private int index = 1;
+
+    public static PhotoStoryFragment newInstance(int index) {
+        PhotoStoryFragment fragment = new PhotoStoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ARG_SECTION_NUMBER, index);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     protected int setFragmentLayout() {
@@ -47,14 +54,18 @@ public class PhotoStoryFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        if (getArguments() != null) {
+            index = getArguments().getInt(ARG_SECTION_NUMBER);
+        }
+        Logger.d("index=" + index);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mMyAdapter = new MyAdapter());
         mMyAdapter.setOnItemClickListener(this::showGirlDetails);
-        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelper.INSTANCE.post(getActivity(), new RetrofitHelper.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
-                return httpService.photoStoryList();
+                return httpService.photoStoryList(index - 1);
             }
 
             @Override
@@ -68,7 +79,7 @@ public class PhotoStoryFragment extends BaseFragment {
     }
 
     private void showGirlDetails(int position) {
-        Intent intent = new Intent(mContext, PhotoDetailsActivity.class);
+        Intent intent = new Intent(getContext(), PhotoDetailsActivity.class);
         intent.putExtra("position", position);
         intent.putExtra("image_urls", JSON.toJSONString(photoStoryBos));
         startActivity(intent);
@@ -79,18 +90,17 @@ public class PhotoStoryFragment extends BaseFragment {
         private RecyclerItemClickListener mOnItemClickListener;
 
         @Override
-        public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyAdapter.MyViewHolder(View.inflate(parent.getContext(), R.layout.item_list_girl, null));
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new MyViewHolder(View.inflate(parent.getContext(), R.layout.item_list_girl, null));
         }
 
         @Override
-        public void onBindViewHolder(MyAdapter.MyViewHolder holder, final int position) {
-            MyAdapter.MyViewHolder girlHolder = holder;
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             PhotoStoryBo photoStoryBo = photoStoryBos.get(position);
-            Picasso.with(mContext).load(photoStoryBo.getPhotoUrl()).into(girlHolder.imageView);
-            girlHolder.textImpression.setText(photoStoryBo.getImpression());
+            Picasso.with(getContext()).load(photoStoryBo.getPhotoUrl()).into(holder.imageView);
+            holder.textImpression.setText(photoStoryBo.getImpression());
             if (mOnItemClickListener != null) {
-                girlHolder.imageView.setOnClickListener(view -> mOnItemClickListener.onItemClickListener(position));
+                holder.imageView.setOnClickListener(view -> mOnItemClickListener.onItemClickListener(position));
             }
         }
 
@@ -99,7 +109,7 @@ public class PhotoStoryFragment extends BaseFragment {
             return photoStoryBos == null ? 0 : photoStoryBos.size();
         }
 
-        public void setOnItemClickListener(RecyclerItemClickListener listener) {
+        void setOnItemClickListener(RecyclerItemClickListener listener) {
             this.mOnItemClickListener = listener;
         }
 
@@ -108,7 +118,7 @@ public class PhotoStoryFragment extends BaseFragment {
             ImageView imageView;
             TextView textImpression;
 
-            public MyViewHolder(View itemView) {
+            MyViewHolder(View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.image_view);
                 textImpression = itemView.findViewById(R.id.text_impression);
