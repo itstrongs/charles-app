@@ -3,6 +3,6 @@
 
     <corners android:radius="@dimen/dimen_margin_small" />
 
-    <solid android:color="@color/color_white_translucent" />
+    <solid android:color="@color/color_translucent_white" />
 
 </shape>

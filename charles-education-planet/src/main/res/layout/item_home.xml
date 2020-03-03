@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_text_common_dark"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="网名：学习使我快乐" />
+
+        <TextView
+            style="@style/style_text_common_gray"
+            android:text="分类：中学教育" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/style_text_title_dark"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:text="标题：中考物理补习重点梳理"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/style_text_common_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:maxLines="3"
+        android:text="中考物理那么多的知识那么多的公式和定理，如何梳理呢，对于本身中考物理成绩就不好的学生来说更加是一个有畏惧心理的事情，包括会越梳理月乱，只好通过专职的物理教师来帮助了，学大教育专职的物理教师具有广泛的教学实践经验，皆是从国内不同重点学校重酬聘用来的不同的于学大教育的教师，物理教师皆是具有起码三四年的一线教学实践经验。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:layout_marginBottom="@dimen/dimen_margin_small"
+        android:background="@color/color_gray_0" />
+</LinearLayout>

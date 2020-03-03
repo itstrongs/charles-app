@@ -62,6 +62,10 @@ public class PhotoStoryFragment extends BaseFragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mMyAdapter = new MyAdapter());
         mMyAdapter.setOnItemClickListener(this::showGirlDetails);
+    }
+
+    @Override
+    protected void initData() {
         RetrofitHelper.INSTANCE.post(getActivity(), new RetrofitHelper.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {

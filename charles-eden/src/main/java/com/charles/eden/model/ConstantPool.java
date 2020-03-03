@@ -4,8 +4,8 @@ import com.charles.eden.R;
 
 public class ConstantPool {
 
-//    public static final String URL_BASE = "http://121.41.74.211/";
-    public static final String URL_BASE = "http://192.168.1.102:8080/";
+    public static final String URL_BASE = "http://121.41.74.211/";
+//    public static final String URL_BASE = "http://192.168.1.101:8080/";
 
     public static final String SP_IS_LOGIN = "sp_is_login";
     public static final String SP_USERNAME = "sp_username";
