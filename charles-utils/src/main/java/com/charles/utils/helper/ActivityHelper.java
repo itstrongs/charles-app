@@ -69,8 +69,9 @@ public enum ActivityHelper {
                 }
             }, 2000);
         } else {
-            activity.finish();
-            System.exit(0);
+            finishAllActivity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }
     }
 }

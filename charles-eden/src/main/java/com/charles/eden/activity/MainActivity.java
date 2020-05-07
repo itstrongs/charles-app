@@ -14,15 +14,17 @@ import com.charles.eden.fragment.NoteFragment;
 import com.charles.eden.fragment.PhotoStoryTabFragment;
 import com.charles.eden.fragment.TodoTabFragment;
 import com.charles.eden.helper.BaseActivity;
-import com.charles.eden.model.ConstantPool;
 import com.charles.eden.view.NavigationView;
 import com.charles.utils.SPHelper;
+import com.charles.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.charles.eden.model.ConstantPool.SP_AUTHORIZATION;
 
 public class MainActivity extends BaseActivity {
 
@@ -49,11 +51,7 @@ public class MainActivity extends BaseActivity {
             } else if (resId == R.id.radio_menu_friends) {
                 switchFragment(FriendsFragment.class);
             } else if (resId == R.id.radio_menu_my) {
-                if (SPHelper.getBoolean(mContext, ConstantPool.SP_IS_LOGIN)) {
-                    switchFragment(MyFragment.class);
-                } else {
-                    startActivity(new Intent(mActivity, LoginActivity.class));
-                }
+                switchFragment(MyFragment.class);
             }
         });
         initFragment();
@@ -63,9 +61,6 @@ public class MainActivity extends BaseActivity {
         mFragmentMap = new HashMap<>();
         mCurrentFragment = NoteFragment.class.getSimpleName();
         mFragmentMap.put(mCurrentFragment, new NoteFragment());
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_main_fragment, mFragmentMap.get(mCurrentFragment))
-                .commit();
     }
 
     public void switchFragment(Class clazz) {
@@ -88,6 +83,18 @@ public class MainActivity extends BaseActivity {
                 transaction.show(fragment).commit();
             }
             mCurrentFragment = fragmentTag;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (StringUtils.isEmpty(SPHelper.getString(mContext, SP_AUTHORIZATION))) {
+            startActivity(new Intent(mActivity, LoginActivity.class));
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.frame_main_fragment, mFragmentMap.get(mCurrentFragment))
+                    .commit();
         }
     }
 

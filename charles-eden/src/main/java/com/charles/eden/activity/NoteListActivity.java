@@ -22,7 +22,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.helper.HttpService;
-import com.charles.eden.helper.RetrofitHelper;
+import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.NotePlanBo;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.utils.Logger;
@@ -70,7 +70,7 @@ public class NoteListActivity extends BaseActivity {
     }
 
     private void getRecordPlanData() {
-        RetrofitHelper.INSTANCE.post(this, new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelperBak.INSTANCE.post(this, new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
                 return httpService.listByTypeId(noteTypeBo.getId());
@@ -116,7 +116,7 @@ public class NoteListActivity extends BaseActivity {
     }
 
     private void saveRecordPlan(final NotePlanBo recordPlanBo) {
-        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
                 return httpService.addRecord(recordPlanBo);
@@ -163,7 +163,7 @@ public class NoteListActivity extends BaseActivity {
                     holder.checkBox.setOnClickListener(v -> {
                         holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
                         notePlanBo.setState(holder.checkBox.isChecked() ? 1 : 0);
-                        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                             @Override
                             public Observable<HttpResult> getObservable(HttpService httpService) {
                                 return httpService.addRecord(notePlanBo);

@@ -15,7 +15,7 @@ import com.charles.eden.model.bo.UserBo;
 import com.charles.utils.SPHelper;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
-import com.charles.utils.http.HttpResult;
+import com.charles.utils.helper.ActivityHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +40,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
     }
 
     @OnClick(R.id.btn_login)
@@ -51,24 +50,28 @@ public class LoginActivity extends BaseActivity {
             ToastUtils.show(mContext, "用户名或密码不能为空");
             return;
         }
-        RetrofitHelper.INSTANCE.post(this, new RetrofitHelper.RetrofitCallback() {
+
+        RetrofitHelper.INSTANCE.post(this, UserBo.class, new RetrofitHelper.RetrofitCallback<UserBo>() {
             @Override
-            public Observable<HttpResult> getObservable(HttpService httpService) {
+            public Observable<JSONObject> getObservable(HttpService httpService) {
                 return httpService.userLogin(new UserBo(username, password));
             }
 
             @Override
-            public void onResult(HttpResult result) {
-                ToastUtils.show(mContext, result.getMsg());
-                UserBo userBo = JSONObject.parseObject(result.getJSONData().toJSONString(), UserBo.class);
-                SPHelper.putBoolean(mContext, ConstantPool.SP_IS_LOGIN, true);
+            public void onResult(String msg, UserBo userBo) {
+                ToastUtils.show(mContext, msg);
                 SPHelper.putString(mContext, ConstantPool.SP_USERNAME, userBo.getMobileNo());
                 SPHelper.putString(mContext, ConstantPool.SP_NICKNAME, userBo.getNickname());
                 SPHelper.putString(mContext, ConstantPool.SP_PORTRAIT, userBo.getPortrait());
-                SPHelper.putLong(mContext, ConstantPool.SP_USER_ID, userBo.getUserId());
+                SPHelper.putLong(mContext, ConstantPool.SP_USER_ID, userBo.getId());
                 SPHelper.putString(mContext, ConstantPool.SP_AUTHORIZATION, userBo.getAuthorization());
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityHelper.INSTANCE.quit(this);
     }
 }

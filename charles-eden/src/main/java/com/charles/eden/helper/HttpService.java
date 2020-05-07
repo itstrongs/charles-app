@@ -1,5 +1,6 @@
 package com.charles.eden.helper;
 
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.model.bo.NotePlanBo;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.eden.model.bo.PersonFriendsBo;
@@ -39,7 +40,7 @@ public interface HttpService {
     Observable<HttpResult> addRecord(@Body NotePlanBo recordPlanBo);
 
     @POST("/user/login")
-    Observable<HttpResult> userLogin(@Body UserBo loginBo);
+    Observable<JSONObject> userLogin(@Body UserBo loginBo);
 
     @GET("/note/list")
     Observable<HttpResult> noteList();

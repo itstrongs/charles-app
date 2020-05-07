@@ -7,13 +7,13 @@ import com.alibaba.fastjson.JSONObject;
  * <p>
  * Describe：
  */
-public class HttpResult {
+public class HttpResult<T> {
 
     private int code;
 
     private String msg;
 
-    private Object data;
+    private T data;
 
     public String getStringData() {
         if (this.data != null) {
@@ -49,7 +49,7 @@ public class HttpResult {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

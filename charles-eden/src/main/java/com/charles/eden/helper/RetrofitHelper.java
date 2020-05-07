@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.utils.Logger;
 import com.charles.utils.ToastUtils;
-import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.ProgressFrameLayout;
 
 import java.util.concurrent.TimeUnit;
@@ -34,15 +35,14 @@ public enum RetrofitHelper {
 
     INSTANCE;
 
-    private static final long DEFAULT_TIMEOUT = 5000;
     private Retrofit mRetrofit;
+    private static final long DEFAULT_TIMEOUT = 5000;
 
     @SuppressLint("CheckResult")
-    public void post(final Activity activity, final RetrofitCallback callback) {
+    public <T> void post(final Activity activity, Class<T> clazz, final RetrofitCallback<T> callback) {
         final ProgressFrameLayout frameLayout = new ProgressFrameLayout(activity);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
                 (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         ProgressBar progressBar = new ProgressBar(activity);
         FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -63,21 +63,21 @@ public enum RetrofitHelper {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
-                    Logger.d("http completed");
-                    frameLayout.setVisibility(View.GONE);
-                    ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
-                    Logger.i("http result ==> " + result.toString());
-                    if (result.getCode() == 200) {
-                        callback.onResult(result);
-                    } else {
-                        ToastUtils.show(activity, result.getMsg());
-                    }
-                }, throwable -> {
-                    Logger.e("http error ==> " + throwable.getMessage());
-                    ToastUtils.show(activity, "网络连接失败");
-                    frameLayout.setVisibility(View.GONE);
-                    ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
-                }
+                            Logger.d("http completed");
+                            frameLayout.setVisibility(View.GONE);
+                            ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
+                            Logger.i("http result ==> " + result.toString());
+                            if (result.getInteger("code") == 200) {
+                                callback.onResult(result.getString("msg"), JSON.parseObject(result.getJSONObject("data").toJSONString(), clazz));
+                            } else {
+                                ToastUtils.show(activity, result.getString("msg"));
+                            }
+                        }, throwable -> {
+                            Logger.e("http error ==> " + throwable.getMessage());
+                            ToastUtils.show(activity, "网络连接失败");
+                            frameLayout.setVisibility(View.GONE);
+                            ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
+                        }
                 );
     }
 
@@ -90,10 +90,10 @@ public enum RetrofitHelper {
         return httpClientBuilder.build();
     }
 
-    public interface RetrofitCallback {
+    public interface RetrofitCallback<T> {
 
-        Observable<HttpResult> getObservable(HttpService httpService);
+        Observable<JSONObject> getObservable(HttpService httpService);
 
-        void onResult(HttpResult result);
+        void onResult(String msg, T result);
     }
 }

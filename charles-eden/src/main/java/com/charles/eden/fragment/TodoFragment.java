@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
 import com.charles.eden.activity.TodoListActivity;
 import com.charles.eden.helper.HttpService;
-import com.charles.eden.helper.RetrofitHelper;
+import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.utils.Logger;
 import com.charles.utils.base.BaseFragment;
@@ -79,7 +79,7 @@ public class TodoFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        RetrofitHelper.INSTANCE.post(getActivity(), new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
                 return httpService.noteType(1);

@@ -8,27 +8,27 @@ package com.charles.eden.model.bo;
  */
 public class UserBo {
 
-    private Long userId;
+    private Long id;
     private String mobileNo;
     private String nickname;
     private String portrait;
-    private String password;
+    private String verifyCode;
     private String authorization;
 
     public UserBo() {
     }
 
-    public UserBo(String mobileNo, String password) {
+    public UserBo(String mobileNo, String verifyCode) {
         this.mobileNo = mobileNo;
-        this.password = password;
+        this.verifyCode = verifyCode;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMobileNo() {
@@ -55,12 +55,12 @@ public class UserBo {
         this.mobileNo = mobileNo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getVerifyCode() {
+        return verifyCode;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
     }
 
     public String getAuthorization() {

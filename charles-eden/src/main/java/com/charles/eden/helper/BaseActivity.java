@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.charles.utils.Logger;
 import com.charles.utils.SPHelper;
 import com.charles.utils.ToastUtils;
+import com.charles.utils.helper.ActivityHelper;
 
 import java.util.UUID;
 
@@ -35,6 +36,7 @@ public class BaseActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         mActivity = this;
         mActivityUuid = UUID.randomUUID().toString();
+        ActivityHelper.INSTANCE.add(this);
     }
 
     protected void exitApp() {
@@ -64,6 +66,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         Logger.d("activity被销毁");
         SPHelper.putString(mContext, SP_ACTIVITY_UUID, mActivityUuid);
+        ActivityHelper.INSTANCE.remove(this);
         super.onDestroy();
     }
 }

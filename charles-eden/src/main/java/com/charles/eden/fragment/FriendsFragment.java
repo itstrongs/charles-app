@@ -16,7 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
 import com.charles.eden.helper.HttpService;
-import com.charles.eden.helper.RetrofitHelper;
+import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.PersonFriendsBo;
 import com.charles.eden.model.dto.FriendsDto;
 import com.charles.utils.Logger;
@@ -68,7 +68,7 @@ public class FriendsFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        RetrofitHelper.INSTANCE.post(getActivity(), new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
                 return httpService.friendsList();
@@ -105,7 +105,7 @@ public class FriendsFragment extends BaseFragment {
                 ToastUtils.show(mContext, "类型名不能为空");
                 return;
             }
-            RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+            RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                 @Override
                 public Observable<HttpResult> getObservable(HttpService httpService) {
                     PersonFriendsBo personFriendsBo = new PersonFriendsBo();
@@ -140,11 +140,13 @@ public class FriendsFragment extends BaseFragment {
             holder.textNickname.setText(friendsDto.getNickname());
             holder.textContent.setText(friendsDto.getContent());
             holder.textDate.setText(friendsDto.getCreatedAt());
+            holder.imgDelete.setOnClickListener(v -> {
+            });
             holder.imgDelete.setOnClickListener(v -> new AlertDialog.Builder(mContext)
                     .setTitle("确定删除吗")
                     .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
                     .setPositiveButton("确定", (dialog, which) -> {
-                        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                             @Override
                             public Observable<HttpResult> getObservable(HttpService httpService) {
                                 Logger.d("friendsDto.getId(): " + friendsDto.getId());

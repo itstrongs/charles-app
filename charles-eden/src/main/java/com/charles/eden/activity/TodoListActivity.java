@@ -20,7 +20,7 @@ import com.charles.eden.R;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.helper.DialogHelper;
 import com.charles.eden.helper.HttpService;
-import com.charles.eden.helper.RetrofitHelper;
+import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.TodoPlanBo;
 import com.charles.utils.http.HttpResult;
 
@@ -66,7 +66,7 @@ public class TodoListActivity extends BaseActivity {
     }
 
     private void initData() {
-        RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
                 return httpService.todoList(mNoteTypeId);
@@ -90,7 +90,7 @@ public class TodoListActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.img_add:
-                DialogHelper.showDialog(mActivity, (content) -> RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                DialogHelper.showDialog(mActivity, (content) -> RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                     @Override
                     public Observable<HttpResult> getObservable(HttpService httpService) {
                         TodoPlanBo todoPlanBo = new TodoPlanBo();
@@ -130,7 +130,7 @@ public class TodoListActivity extends BaseActivity {
             holder.checkBox.setOnClickListener(v -> {
                 holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
                 todoPlanBo.setFinish(holder.checkBox.isChecked());
-                RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+                RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                     @Override
                     public Observable<HttpResult> getObservable(HttpService httpService) {
                         return httpService.todoFinish(todoPlanBo.getId(), holder.checkBox.isChecked());
@@ -143,7 +143,7 @@ public class TodoListActivity extends BaseActivity {
             });
             holder.textContent.setText(todoPlanBo.getContent());
             holder.textDate.setText(todoPlanBo.getUpdatedAt());
-            holder.imgEdit.setOnClickListener(v -> DialogHelper.showDialog(mActivity, todoPlanBo.getContent(), "", (content) -> RetrofitHelper.INSTANCE.post(mActivity, new RetrofitHelper.RetrofitCallback() {
+            holder.imgEdit.setOnClickListener(v -> DialogHelper.showDialog(mActivity, todoPlanBo.getContent(), "", (content) -> RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
                 @Override
                 public Observable<HttpResult> getObservable(HttpService httpService) {
                     todoPlanBo.setTypeId(mNoteTypeId);

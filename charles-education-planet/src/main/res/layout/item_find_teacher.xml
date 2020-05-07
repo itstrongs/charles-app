@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/style_text_common_dark"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="网名：学习使我快乐" />
+
+        <TextView
+            style="@style/style_text_common_gray"
+            android:text="分类：中学教育" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/style_text_title_dark"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:text="标题：重金求家教老师！"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/style_text_common_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:maxLines="3"
+        android:text="孩子物理很差，担心他中考物理会拖后腿，想找个家教老师给他补习一下。" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="@dimen/dimen_margin_small"
+        android:layout_marginBottom="@dimen/dimen_margin_small"
+        android:background="@color/color_gray_0" />
+</LinearLayout>
