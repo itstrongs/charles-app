@@ -17,9 +17,11 @@ import com.charles.utils.ToastUtils;
  * @author liufengqiang <fq1781@163.com>
  * @date 2019-12-24 19:37
  */
-public class DialogHelper {
+public enum DialogHelper {
 
-    public static void showDialog(Activity activity, String name, String desc, OnDialogAddListener listener) {
+    INSTANCE;
+
+    public void showDialog(Activity activity, String name, String desc, OnDialogAddListener listener) {
         final View view = LayoutInflater.from(activity).inflate(R.layout.dialog_add_type, null, false);
         EditText editName = view.findViewById(R.id.edit_name);
         EditText editDesc = view.findViewById(R.id.edit_desc);
@@ -44,7 +46,7 @@ public class DialogHelper {
         editDialog.create().show();
     }
 
-    public static void showDialog(Activity activity, OnDialogAddListener listener) {
+    public void showDialog(Activity activity, OnDialogAddListener listener) {
         showDialog(activity, "", "", listener);
     }
 

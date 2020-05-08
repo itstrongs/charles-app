@@ -1,13 +1,11 @@
 package com.charles.eden.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -93,24 +91,21 @@ public class NoteListActivity extends BaseActivity {
         editDialog.setTitle("添加" + noteTypeBo.getName());
         editDialog.setIcon(R.mipmap.ic_launcher);
         editDialog.setView(view);
-        editDialog.setPositiveButton("添加", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                EditText editName = view.findViewById(R.id.edit_name);
-                EditText editDesc = view.findViewById(R.id.edit_desc);
-                final String typeName = editName.getText().toString().trim();
-                final String typeDesc = editDesc.getText().toString().trim();
-                if (StringUtils.isEmpty(typeName)) {
-                    ToastUtils.show(mContext, "类型名不能为空");
-                    return;
-                }
-                NotePlanBo recordPlanBo = new NotePlanBo();
-                recordPlanBo.setTypeId(noteTypeBo.getId());
-                recordPlanBo.setName(typeName);
-                recordPlanBo.setContent(typeDesc);
-                saveRecordPlan(recordPlanBo);
-                dialog.dismiss();
+        editDialog.setPositiveButton("添加", (dialog, which) -> {
+            EditText editName = view.findViewById(R.id.edit_name);
+            EditText editDesc = view.findViewById(R.id.edit_desc);
+            final String typeName = editName.getText().toString().trim();
+            final String typeDesc = editDesc.getText().toString().trim();
+            if (StringUtils.isEmpty(typeName)) {
+                ToastUtils.show(mContext, "类型名不能为空");
+                return;
             }
+            NotePlanBo recordPlanBo = new NotePlanBo();
+            recordPlanBo.setTypeId(noteTypeBo.getId());
+            recordPlanBo.setName(typeName);
+            recordPlanBo.setContent(typeDesc);
+            saveRecordPlan(recordPlanBo);
+            dialog.dismiss();
         });
         editDialog.create().show();
     }
@@ -157,23 +152,23 @@ public class NoteListActivity extends BaseActivity {
                     });
                     break;
                 case 1:
-                    holder.checkBox.setVisibility(View.VISIBLE);
-                    holder.checkBox.setChecked(notePlanBo.getState() != null && notePlanBo.getState() == 1);
+//                    holder.checkBox.setVisibility(View.VISIBLE);
+//                    holder.checkBox.setChecked(notePlanBo.getState() != null && notePlanBo.getState() == 1);
                     holder.viewLine.setVisibility(notePlanBo.getState() == null || notePlanBo.getState() == 0 ? View.GONE : View.VISIBLE);
-                    holder.checkBox.setOnClickListener(v -> {
-                        holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
-                        notePlanBo.setState(holder.checkBox.isChecked() ? 1 : 0);
-                        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
-                            @Override
-                            public Observable<HttpResult> getObservable(HttpService httpService) {
-                                return httpService.addRecord(notePlanBo);
-                            }
-
-                            @Override
-                            public void onResult(HttpResult result) {
-                            }
-                        });
-                    });
+//                    holder.checkBox.setOnClickListener(v -> {
+//                        holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
+//                        notePlanBo.setState(holder.checkBox.isChecked() ? 1 : 0);
+//                        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
+//                            @Override
+//                            public Observable<HttpResult> getObservable(HttpService httpService) {
+//                                return httpService.addRecord(notePlanBo);
+//                            }
+//
+//                            @Override
+//                            public void onResult(HttpResult result) {
+//                            }
+//                        });
+//                    });
                     break;
                 case 2:
 //                    holder.btnCard.setVisibility(View.VISIBLE);
@@ -192,7 +187,7 @@ public class NoteListActivity extends BaseActivity {
 
             TextView textName;
             View viewLine;
-            CheckBox checkBox;
+//            CheckBox checkBox;
 //            TextView btnCard;
             TextView textContent;
             TextView textDate;
@@ -202,7 +197,7 @@ public class NoteListActivity extends BaseActivity {
                 super(itemView);
                 textName = itemView.findViewById(R.id.text_name);
                 viewLine = itemView.findViewById(R.id.view_line);
-                checkBox = itemView.findViewById(R.id.check_box);
+//                checkBox = itemView.findViewById(R.id.check_box);
 //                btnCard = itemView.findViewById(R.id.btn_card);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);

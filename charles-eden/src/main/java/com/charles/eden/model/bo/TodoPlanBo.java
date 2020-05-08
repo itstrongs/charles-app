@@ -21,6 +21,8 @@ public class TodoPlanBo {
     private Long userId;
     /** 更新时间 */
     private String updatedAt;
+    /** 创建时间 */
+    private String createdAt;
 
     public Long getId() {
         return id;
@@ -76,5 +78,13 @@ public class TodoPlanBo {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }

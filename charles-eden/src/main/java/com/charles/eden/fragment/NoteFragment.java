@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.helper.HttpService;
+import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.NoteBo;
 import com.charles.eden.model.bo.NoteTypeBo;
@@ -102,9 +104,9 @@ public class NoteFragment extends BaseFragment {
                 ToastUtils.show(mContext, "类型名不能为空");
                 return;
             }
-            RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
+            RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitCallback<NoteTypeBo>() {
                 @Override
-                public Observable<HttpResult> getObservable(HttpService httpService) {
+                public Observable<JSONObject> getObservable(HttpService httpService) {
                     NoteTypeBo noteTypeBo = new NoteTypeBo();
                     noteTypeBo.setName(typeName);
                     noteTypeBo.setDescription(typeDesc);
@@ -113,8 +115,8 @@ public class NoteFragment extends BaseFragment {
                 }
 
                 @Override
-                public void onResult(HttpResult result) {
-                    ToastUtils.show(mContext, result.getMsg());
+                public void onResult(String msg, NoteTypeBo noteTypeBo) {
+                    ToastUtils.show(mContext, msg);
                     getRecordPlanType();
                 }
             });

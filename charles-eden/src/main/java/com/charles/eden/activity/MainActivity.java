@@ -3,6 +3,7 @@ package com.charles.eden.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -54,13 +55,28 @@ public class MainActivity extends BaseActivity {
                 switchFragment(MyFragment.class);
             }
         });
-        initFragment();
+        if (StringUtils.isEmpty(SPHelper.getString(mContext, SP_AUTHORIZATION))) {
+            startActivityForResult(new Intent(mActivity, LoginActivity.class), 200);
+        } else {
+            initFragment();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 200) {
+            initFragment();
+        }
     }
 
     private void initFragment() {
         mFragmentMap = new HashMap<>();
         mCurrentFragment = NoteFragment.class.getSimpleName();
         mFragmentMap.put(mCurrentFragment, new NoteFragment());
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.frame_main_fragment, mFragmentMap.get(mCurrentFragment))
+                .commit();
     }
 
     public void switchFragment(Class clazz) {
@@ -83,18 +99,6 @@ public class MainActivity extends BaseActivity {
                 transaction.show(fragment).commit();
             }
             mCurrentFragment = fragmentTag;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (StringUtils.isEmpty(SPHelper.getString(mContext, SP_AUTHORIZATION))) {
-            startActivity(new Intent(mActivity, LoginActivity.class));
-        } else {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_main_fragment, mFragmentMap.get(mCurrentFragment))
-                    .commit();
         }
     }
 

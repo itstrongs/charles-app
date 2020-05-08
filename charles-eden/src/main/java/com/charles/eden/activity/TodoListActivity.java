@@ -1,13 +1,15 @@
 package com.charles.eden.activity;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.helper.DialogHelper;
 import com.charles.eden.helper.HttpService;
+import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
+import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.eden.model.bo.TodoPlanBo;
 import com.charles.utils.http.HttpResult;
 
@@ -90,9 +95,9 @@ public class TodoListActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.img_add:
-                DialogHelper.showDialog(mActivity, (content) -> RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
+                DialogHelper.INSTANCE.showDialog(mActivity, (content) -> RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitCallback<NoteTypeBo>() {
                     @Override
-                    public Observable<HttpResult> getObservable(HttpService httpService) {
+                    public Observable<JSONObject> getObservable(HttpService httpService) {
                         TodoPlanBo todoPlanBo = new TodoPlanBo();
                         todoPlanBo.setTypeId(mNoteTypeId);
                         todoPlanBo.setContent(content);
@@ -100,7 +105,7 @@ public class TodoListActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onResult(HttpResult result) {
+                    public void onResult(String msg, NoteTypeBo userBo) {
                         initData();
                     }
                 }));
@@ -124,38 +129,56 @@ public class TodoListActivity extends BaseActivity {
                 holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 holder.imgSetTop.setVisibility(View.VISIBLE);
             }
-            holder.checkBox.setVisibility(View.VISIBLE);
-            holder.checkBox.setChecked(todoPlanBo.getFinish() != null && todoPlanBo.getFinish());
             holder.viewLine.setVisibility(todoPlanBo.getFinish() == null || todoPlanBo.getFinish() ? View.VISIBLE : View.GONE);
-            holder.checkBox.setOnClickListener(v -> {
-                holder.viewLine.setVisibility(holder.checkBox.isChecked() ? View.VISIBLE : View.GONE);
-                todoPlanBo.setFinish(holder.checkBox.isChecked());
-                RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
-                    @Override
-                    public Observable<HttpResult> getObservable(HttpService httpService) {
-                        return httpService.todoFinish(todoPlanBo.getId(), holder.checkBox.isChecked());
-                    }
-
-                    @Override
-                    public void onResult(HttpResult result) {
-                    }
-                });
-            });
             holder.textContent.setText(todoPlanBo.getContent());
             holder.textDate.setText(todoPlanBo.getUpdatedAt());
-            holder.imgEdit.setOnClickListener(v -> DialogHelper.showDialog(mActivity, todoPlanBo.getContent(), "", (content) -> RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
-                @Override
-                public Observable<HttpResult> getObservable(HttpService httpService) {
-                    todoPlanBo.setTypeId(mNoteTypeId);
-                    todoPlanBo.setContent(content);
-                    return httpService.todoPlan(todoPlanBo);
-                }
+            holder.imgMore.setOnClickListener(v -> {
+                View view = LayoutInflater.from(mContext).inflate(R.layout.popup_item, null, false);
+                ImageView imgAlert = view.findViewById(R.id.img_alert);
+                ImageView imgSetTop = view.findViewById(R.id.img_set_top);
+                ImageView imgDelete = view.findViewById(R.id.img_delete);
+                final PopupWindow popWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                popWindow.setTouchable(true);
+                popWindow.setTouchInterceptor((v1, event) -> false);
+                popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+                popWindow.showAsDropDown(v, 50, 0);
+                imgAlert.setOnClickListener(v12 -> {
+                    popWindow.dismiss();
+                    DialogHelper.INSTANCE.showDialog(mActivity, todoPlanBo.getContent(), "", content -> {
+                        RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitCallback<NoteTypeBo>() {
+                            @Override
+                            public Observable<JSONObject> getObservable(HttpService httpService) {
+                                todoPlanBo.setContent(content);
+                                return httpService.todoPlan(todoPlanBo);
+                            }
 
-                @Override
-                public void onResult(HttpResult result) {
-                    initData();
-                }
-            })));
+                            @Override
+                            public void onResult(String msg, NoteTypeBo userBo) {
+                                mMyAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    });
+                });
+                imgSetTop.setOnClickListener(v13 -> {
+                    todoPlanBo.setFinish(!todoPlanBo.getFinish());
+                    holder.viewLine.setVisibility(todoPlanBo.getFinish() ? View.VISIBLE : View.GONE);
+                    RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
+                        @Override
+                        public Observable<HttpResult> getObservable(HttpService httpService) {
+                            return httpService.todoFinish(todoPlanBo.getId(), todoPlanBo.getFinish());
+                        }
+
+                        @Override
+                        public void onResult(HttpResult result) {
+                        }
+                    });
+                    popWindow.dismiss();
+                });
+                imgDelete.setOnClickListener(v13 -> {
+                    Toast.makeText(mContext, "你点击了删除~", Toast.LENGTH_SHORT).show();
+                    popWindow.dismiss();
+                });
+            });
         }
 
         @Override
@@ -167,21 +190,19 @@ public class TodoListActivity extends BaseActivity {
 
             TextView textName;
             View viewLine;
-            CheckBox checkBox;
             TextView textContent;
             TextView textDate;
             ImageView imgSetTop;
-            ImageView imgEdit;
+            ImageView imgMore;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 textName = itemView.findViewById(R.id.text_name);
                 viewLine = itemView.findViewById(R.id.view_line);
-                checkBox = itemView.findViewById(R.id.check_box);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);
-                imgEdit = itemView.findViewById(R.id.img_edit);
+                imgMore = itemView.findViewById(R.id.img_more);
             }
         }
     }

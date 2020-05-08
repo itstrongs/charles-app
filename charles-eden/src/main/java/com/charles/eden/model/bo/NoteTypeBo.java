@@ -69,4 +69,12 @@ public class NoteTypeBo {
     public void setType(Integer type) {
         this.type = type;
     }
+
+    public Boolean getSetTop() {
+        return isSetTop;
+    }
+
+    public void setSetTop(Boolean setTop) {
+        isSetTop = setTop;
+    }
 }

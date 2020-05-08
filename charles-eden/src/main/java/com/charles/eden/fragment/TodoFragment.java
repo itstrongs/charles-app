@@ -18,9 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.activity.TodoListActivity;
+import com.charles.eden.helper.DialogHelper;
 import com.charles.eden.helper.HttpService;
+import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.utils.Logger;
@@ -112,7 +115,9 @@ public class TodoFragment extends BaseFragment {
             NoteTypeBo noteTypeBo = mNoteTypeBo.get(position);
             holder.textName.setText(noteTypeBo.getName());
             holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-            holder.imgSetTop.setVisibility(View.VISIBLE);
+            if (noteTypeBo.getSetTop() != null && noteTypeBo.getSetTop()) {
+                holder.imgSetTop.setVisibility(View.VISIBLE);
+            }
             holder.layoutHead.setOnClickListener(v -> {
                 if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClickListener(position);
@@ -129,8 +134,21 @@ public class TodoFragment extends BaseFragment {
                 popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
                 popWindow.showAsDropDown(v, 50, 0);
                 imgAlert.setOnClickListener(v12 -> {
-                    Toast.makeText(mContext, "你点击了嘻嘻~", Toast.LENGTH_SHORT).show();
                     popWindow.dismiss();
+                    DialogHelper.INSTANCE.showDialog(mActivity, noteTypeBo.getName(), noteTypeBo.getDescription(), content -> {
+                        RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitCallback<NoteTypeBo>() {
+                            @Override
+                            public Observable<JSONObject> getObservable(HttpService httpService) {
+                                noteTypeBo.setName(content);
+                                return httpService.addNoteType(noteTypeBo);
+                            }
+
+                            @Override
+                            public void onResult(String msg, NoteTypeBo userBo) {
+                                mMyAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    });
                 });
                 imgSetTop.setOnClickListener(v13 -> {
                     Toast.makeText(mContext, "你点击了呵呵~", Toast.LENGTH_SHORT).show();

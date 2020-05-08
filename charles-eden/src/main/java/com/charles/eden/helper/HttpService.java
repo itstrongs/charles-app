@@ -31,7 +31,7 @@ public interface HttpService {
     Observable<HttpResult> listByTypeId(@Path("id") Long id);
 
     @POST("/note-type")
-    Observable<HttpResult> addNoteType(@Body NoteTypeBo noteTypeBo);
+    Observable<JSONObject> addNoteType(@Body NoteTypeBo noteTypeBo);
 
     @DELETE("/note-type")
     Observable<HttpResult> noteType(@Body NoteTypeBo noteTypeBo);
@@ -64,8 +64,11 @@ public interface HttpService {
     Observable<HttpResult> todoList(@Query("typeId") Long typeId);
 
     @POST("/todo-plan")
-    Observable<HttpResult> todoPlan(@Body TodoPlanBo todoPlanBo);
+    Observable<JSONObject> todoPlan(@Body TodoPlanBo todoPlanBo);
 
+    /**
+     * 更新todo是否完成
+     */
     @PUT("/todo-plan/{id}/is-finish")
     Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
 

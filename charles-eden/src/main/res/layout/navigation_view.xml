@@ -7,7 +7,7 @@
 
     <RadioButton
         android:id="@+id/radio_menu_note"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -15,12 +15,11 @@
         android:drawableTop="@drawable/ic_party"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="笔记"
-        android:textSize="12sp" />
+        android:text="笔记" />
 
     <RadioButton
         android:id="@+id/radio_menu_todo"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -28,12 +27,11 @@
         android:drawableTop="@drawable/ic_meet"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="TODO"
-        android:textSize="12sp" />
+        android:text="TODO" />
 
     <RadioButton
         android:id="@+id/radio_photo_story"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -41,12 +39,11 @@
         android:drawableTop="@drawable/ic_photo_story"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="照片故事"
-        android:textSize="12sp" />
+        android:text="回忆" />
 
     <RadioButton
         android:id="@+id/radio_menu_sentence"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -54,12 +51,11 @@
         android:drawableTop="@drawable/ic_tab_sentence"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="微话"
-        android:textSize="12sp" />
+        android:text="微话" />
 
     <RadioButton
         android:id="@+id/radio_menu_friends"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -67,12 +63,11 @@
         android:drawableTop="@drawable/ic_tab_friends"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="朋友圈"
-        android:textSize="12sp" />
+        android:text="动态" />
 
     <RadioButton
         android:id="@+id/radio_menu_my"
-        style="@style/style_text_title_white"
+        style="@style/style_text_tip_dark"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:button="@null"
@@ -80,6 +75,5 @@
         android:drawableTop="@drawable/ic_me"
         android:drawablePadding="3dp"
         android:gravity="center_horizontal"
-        android:text="我"
-        android:textSize="12sp" />
+        android:text="我" />
 </RadioGroup>

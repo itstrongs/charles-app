@@ -67,10 +67,16 @@ public enum RetrofitHelper {
                             frameLayout.setVisibility(View.GONE);
                             ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
                             Logger.i("http result ==> " + result.toString());
+                            String msg = result.getString("msg");
                             if (result.getInteger("code") == 200) {
-                                callback.onResult(result.getString("msg"), JSON.parseObject(result.getJSONObject("data").toJSONString(), clazz));
+                                JSONObject data = result.getJSONObject("data");
+                                if (data != null) {
+                                    callback.onResult(msg, JSON.parseObject(data.toJSONString(), clazz));
+                                } else {
+                                    callback.onResult(msg, null);
+                                }
                             } else {
-                                ToastUtils.show(activity, result.getString("msg"));
+                                ToastUtils.show(activity, msg);
                             }
                         }, throwable -> {
                             Logger.e("http error ==> " + throwable.getMessage());

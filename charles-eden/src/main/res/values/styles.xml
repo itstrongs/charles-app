@@ -4,51 +4,8 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/color_white</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-<!--    &lt;!&ndash;布局样式&ndash;&gt;-->
-<!--    <style name="style_text_common_white">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/color_white</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_common</item>-->
-<!--    </style>-->
-
-<!--    <style name="style_text_common_gray">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/color_gray</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_common</item>-->
-<!--    </style>-->
-
-<!--    <style name="style_text_title_white">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/color_white</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_title</item>-->
-<!--    </style>-->
-
-<!--    <style name="style_text_title_dark">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/colorPrimaryDark</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_title</item>-->
-<!--    </style>-->
-
-<!--    <style name="style_text_tip_white">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/color_white</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_tip</item>-->
-<!--    </style>-->
-
-<!--    <style name="style_text_tip_gray">-->
-<!--        <item name="android:layout_width">wrap_content</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:textColor">@color/color_gray</item>-->
-<!--        <item name="android:textSize">@dimen/dimen_text_tip</item>-->
-<!--    </style>-->
 
 </resources>

@@ -8,16 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--            <TextView-->
-        <!--                style="@style/style_text_title_white"-->
-        <!--                android:layout_centerInParent="true"-->
-        <!--                android:text="土豆计划" />-->
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            app:tabTextColor="@color/color_white" />
+            app:tabTextColor="@color/color_dark" />
 
         <ImageView
             android:id="@+id/img_add"
@@ -32,10 +28,4 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <!--        <androidx.recyclerview.widget.RecyclerView-->
-    <!--            android:id="@+id/recycler_view"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_marginLeft="@dimen/dimen_margin_small"-->
-    <!--            android:layout_marginRight="@dimen/dimen_margin_small" />-->
 </LinearLayout>
