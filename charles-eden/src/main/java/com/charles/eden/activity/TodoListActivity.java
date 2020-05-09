@@ -25,8 +25,10 @@ import com.charles.eden.helper.DialogHelper;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
+import com.charles.eden.model.ConstantPool;
 import com.charles.eden.model.bo.NoteTypeBo;
 import com.charles.eden.model.bo.TodoPlanBo;
+import com.charles.utils.SPHelper;
 import com.charles.utils.http.HttpResult;
 
 import java.util.List;
@@ -131,7 +133,7 @@ public class TodoListActivity extends BaseActivity {
             }
             holder.viewLine.setVisibility(todoPlanBo.getFinish() == null || todoPlanBo.getFinish() ? View.VISIBLE : View.GONE);
             holder.textContent.setText(todoPlanBo.getContent());
-            holder.textDate.setText(todoPlanBo.getUpdatedAt());
+            holder.textDate.setText(todoPlanBo.getUpdatedAt() + " " + SPHelper.getString(mContext, ConstantPool.SP_NICKNAME));
             holder.imgMore.setOnClickListener(v -> {
                 View view = LayoutInflater.from(mContext).inflate(R.layout.popup_item, null, false);
                 ImageView imgAlert = view.findViewById(R.id.img_alert);

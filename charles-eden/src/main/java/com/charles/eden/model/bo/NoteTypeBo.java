@@ -20,7 +20,10 @@ public class NoteTypeBo {
     /** 是否置顶 */
     private Boolean isSetTop;
     /** 类型 0.笔记 1.todo */
-    private Integer type;
+    private Integer moduleType;
+    /** 创建时间 */
+    private String createdAt;
+    private String nickname;
 
     public Long getId() {
         return id;
@@ -62,12 +65,12 @@ public class NoteTypeBo {
         this.permission = permission;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getModuleType() {
+        return moduleType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setModuleType(Integer moduleType) {
+        this.moduleType = moduleType;
     }
 
     public Boolean getSetTop() {
@@ -76,5 +79,21 @@ public class NoteTypeBo {
 
     public void setSetTop(Boolean setTop) {
         isSetTop = setTop;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

@@ -1,15 +1,9 @@
 package com.charles.eden.fragment;
 
-import android.content.Context;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.charles.eden.R;
+import com.charles.eden.model.SectionsPagerAdapter;
 import com.charles.utils.base.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,9 +19,9 @@ import static com.charles.eden.model.ConstantPool.LIST_TAB_TEXT;
  */
 public class PhotoStoryTabFragment extends BaseFragment {
 
-    @BindView(R.id.tab_layout)
+    @BindView(R.id.tab_layout2)
     TabLayout tabLayout;
-    @BindView(R.id.view_pager)
+    @BindView(R.id.view_pager2)
     ViewPager viewPager;
 
     @Override
@@ -37,9 +31,7 @@ public class PhotoStoryTabFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        com.charles.eden.model.SectionsPagerAdapter sectionsPagerAdapter = new com.charles.eden.model.SectionsPagerAdapter(mContext,
-                getFragmentManager(), LIST_TAB_TEXT, position -> PhotoStoryFragment.newInstance(position + 1));
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(new SectionsPagerAdapter(mContext, getFragmentManager(), LIST_TAB_TEXT, position -> PhotoStoryFragment.newInstance(position + 1)));
         tabLayout.setupWithViewPager(viewPager);
     }
 }

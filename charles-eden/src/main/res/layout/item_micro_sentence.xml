@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen_margin_small"
+    android:background="@drawable/shape_bg_white_translucent"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_margin">
+
+    <TextView
+        android:id="@+id/text_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#民谣#"
+        android:textColor="@color/color_blue"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_source"
+        style="@style/style_text_common_dark"
+        android:text="+ 《理想》. #赵雷" />
+
+    <TextView
+        style="@style/style_text_common_dark"
+        android:text="很多年华将逝的人回头看时，都喜欢说一句话：青春务必惨烈一些才好。年少时的记忆血肉横飞，老来诸事皆忘，舔舔唇，还可以隐约感受到当年热血的腥甜。" />
+</LinearLayout>

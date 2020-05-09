@@ -83,6 +83,7 @@ public enum RetrofitHelper {
                             ToastUtils.show(activity, "网络连接失败");
                             frameLayout.setVisibility(View.GONE);
                             ((ViewGroup) frameLayout.getParent()).removeView(frameLayout);
+                            callback.onResult(null, null);
                         }
                 );
     }

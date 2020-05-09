@@ -44,9 +44,7 @@ public class TodoTabFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(mContext,
-                getFragmentManager(), LIST_TAB_TEXT, position -> TodoFragment.newInstance(position + 1));
-        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setAdapter(new SectionsPagerAdapter(mContext, getFragmentManager(), LIST_TAB_TEXT, TodoFragment::newInstance));
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -80,8 +78,8 @@ public class TodoTabFragment extends BaseFragment {
                     NoteTypeBo noteTypeBo = new NoteTypeBo();
                     noteTypeBo.setName(typeName);
                     noteTypeBo.setDescription(typeDesc);
-                    noteTypeBo.setType(1);
-                    return httpService.addNoteType(noteTypeBo);
+                    noteTypeBo.setModuleType(1);
+                    return httpService.addModuleType(noteTypeBo);
                 }
 
                 @Override

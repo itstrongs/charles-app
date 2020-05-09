@@ -1,5 +1,31 @@
-<fr.castorflex.android.verticalviewpager.VerticalViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/view_pager"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_micro_sentence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:tabTextColor="@color/color_dark" />
+
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dimen_margin"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_micro_sentence"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

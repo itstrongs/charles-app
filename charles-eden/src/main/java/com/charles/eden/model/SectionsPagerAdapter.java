@@ -16,7 +16,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static int[] TAB_TITLES;
-    private final Context mContext;
+    private Context mContext;
     private SectionsCallback mSectionsCallback;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm, int[] tabTitles, SectionsCallback callback) {

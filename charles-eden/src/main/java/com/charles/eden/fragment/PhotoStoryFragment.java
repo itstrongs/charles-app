@@ -104,7 +104,7 @@ public class PhotoStoryFragment extends BaseFragment {
             Picasso.with(getContext()).load(photoStoryBo.getPhotoUrl()).into(holder.imageView);
             holder.textImpression.setText(photoStoryBo.getImpression());
             if (mOnItemClickListener != null) {
-                holder.imageView.setOnClickListener(view -> mOnItemClickListener.onItemClickListener(position));
+                holder.layoutStory.setOnClickListener(view -> mOnItemClickListener.onItemClickListener(position));
             }
         }
 
@@ -121,11 +121,13 @@ public class PhotoStoryFragment extends BaseFragment {
 
             ImageView imageView;
             TextView textImpression;
+            View layoutStory;
 
             MyViewHolder(View itemView) {
                 super(itemView);
                 imageView = itemView.findViewById(R.id.image_view);
                 textImpression = itemView.findViewById(R.id.text_impression);
+                layoutStory = itemView.findViewById(R.id.layout_story);
             }
         }
     }

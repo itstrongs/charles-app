@@ -66,11 +66,11 @@ public class NoteFragment extends BaseFragment {
 //                startActivity(intent);
 //            }
 //        });
-        getRecordPlanType();
         swipeRefreshLayout.setOnRefreshListener(this::initData);
     }
 
-    private void getRecordPlanType() {
+    @Override
+    protected void initData() {
         RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
@@ -110,14 +110,14 @@ public class NoteFragment extends BaseFragment {
                     NoteTypeBo noteTypeBo = new NoteTypeBo();
                     noteTypeBo.setName(typeName);
                     noteTypeBo.setDescription(typeDesc);
-                    noteTypeBo.setType(0);
-                    return httpService.addNoteType(noteTypeBo);
+                    noteTypeBo.setModuleType(0);
+                    return httpService.addModuleType(noteTypeBo);
                 }
 
                 @Override
                 public void onResult(String msg, NoteTypeBo noteTypeBo) {
                     ToastUtils.show(mContext, msg);
-                    getRecordPlanType();
+                    initData();
                 }
             });
             dialog.dismiss();

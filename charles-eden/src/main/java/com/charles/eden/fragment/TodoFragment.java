@@ -85,7 +85,7 @@ public class TodoFragment extends BaseFragment {
         RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
             @Override
             public Observable<HttpResult> getObservable(HttpService httpService) {
-                return httpService.noteType(1);
+                return httpService.listModuleType(1, getArguments().getInt(ARG_SECTION_NUMBER));
             }
 
             @Override
@@ -115,6 +115,7 @@ public class TodoFragment extends BaseFragment {
             NoteTypeBo noteTypeBo = mNoteTypeBo.get(position);
             holder.textName.setText(noteTypeBo.getName());
             holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            holder.textDate.setText(noteTypeBo.getCreatedAt() + " " + noteTypeBo.getNickname());
             if (noteTypeBo.getSetTop() != null && noteTypeBo.getSetTop()) {
                 holder.imgSetTop.setVisibility(View.VISIBLE);
             }
@@ -140,7 +141,7 @@ public class TodoFragment extends BaseFragment {
                             @Override
                             public Observable<JSONObject> getObservable(HttpService httpService) {
                                 noteTypeBo.setName(content);
-                                return httpService.addNoteType(noteTypeBo);
+                                return httpService.addModuleType(noteTypeBo);
                             }
 
                             @Override
@@ -155,8 +156,19 @@ public class TodoFragment extends BaseFragment {
                     popWindow.dismiss();
                 });
                 imgDelete.setOnClickListener(v13 -> {
-                    Toast.makeText(mContext, "你点击了删除~", Toast.LENGTH_SHORT).show();
                     popWindow.dismiss();
+//                    RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitCallback<NoteTypeBo>() {
+//                        @Override
+//                        public Observable<JSONObject> getObservable(HttpService httpService) {
+//                            noteTypeBo.setName(content);
+//                            return httpService.addModuleType(noteTypeBo);
+//                        }
+//
+//                        @Override
+//                        public void onResult(String msg, NoteTypeBo userBo) {
+//                            mMyAdapter.notifyDataSetChanged();
+//                        }
+//                    });
                 });
             });
         }
@@ -174,6 +186,7 @@ public class TodoFragment extends BaseFragment {
 
             View layoutHead;
             TextView textName;
+            TextView textDate;
             TextView textDesc;
             ImageView imgSetTop;
             ImageView imgMore;
@@ -182,6 +195,7 @@ public class TodoFragment extends BaseFragment {
                 super(itemView);
                 layoutHead = itemView.findViewById(R.id.layout_head);
                 textName = itemView.findViewById(R.id.text_name);
+                textDate = itemView.findViewById(R.id.text_date);
                 textDesc = itemView.findViewById(R.id.text_desc);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);
                 imgMore = itemView.findViewById(R.id.img_more);

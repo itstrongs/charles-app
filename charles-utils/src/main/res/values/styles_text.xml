@@ -1,11 +1,13 @@
 <resources>
     <style name="style_text_setting_item">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textColor">@color/color_dark</item>
         <item name="android:textSize">@dimen/dimen_text_title</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_marginTop">@dimen/dimen_margin</item>
-        <item name="android:padding">@dimen/dimen_margin_small</item>
+        <item name="android:padding">@dimen/dimen_margin</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:layout_marginTop">@dimen/dimen_margin_small</item>
+        <item name="android:drawablePadding">@dimen/dimen_margin</item>
     </style>
 
     <!--黑色普通文字样式-->

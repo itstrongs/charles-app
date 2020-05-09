@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_refresh_layout"
+    android:id="@+id/swipe_micro_sentence"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_micro_sentence"
         android:layout_width="match_parent"
+        android:paddingLeft="@dimen/dimen_margin_small"
+        android:paddingRight="@dimen/dimen_margin_small"
         android:layout_height="match_parent"
-        android:background="@color/color_gray_0"/>
+        android:background="@color/color_white"/>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

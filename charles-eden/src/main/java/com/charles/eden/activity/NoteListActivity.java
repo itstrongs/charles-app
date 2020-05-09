@@ -142,7 +142,7 @@ public class NoteListActivity extends BaseActivity {
                 holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 holder.imgSetTop.setVisibility(View.VISIBLE);
             }
-            switch (noteTypeBo.getType()) {
+            switch (noteTypeBo.getModuleType()) {
                 case 0:
                     holder.textContent.setVisibility(View.VISIBLE);
                     holder.textContent.setOnClickListener(v -> {

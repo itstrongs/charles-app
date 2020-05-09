@@ -24,29 +24,45 @@ import retrofit2.http.Query;
  */
 public interface HttpService {
 
-    @GET("/note-plan/type")
-    Observable<HttpResult> recordPlanType();
+    /**
+     * 登录
+     */
+    @POST("/user/login")
+    Observable<JSONObject> userLogin(@Body UserBo loginBo);
 
-    @GET("/note-plan/{id}")
-    Observable<HttpResult> listByTypeId(@Path("id") Long id);
+    /**
+     * 新增模块分类
+     */
+    @POST("/category")
+    Observable<JSONObject> addModuleType(@Body NoteTypeBo noteTypeBo);
 
-    @POST("/note-type")
-    Observable<JSONObject> addNoteType(@Body NoteTypeBo noteTypeBo);
+    /**
+     * 模块分类列表
+     */
+    @GET("/category/list")
+    Observable<HttpResult> listModuleType(@Query("moduleType") Integer moduleType, @Query("queryRange") Integer queryRange);
 
-    @DELETE("/note-type")
-    Observable<HttpResult> noteType(@Body NoteTypeBo noteTypeBo);
+    /**
+     * 删除模块分类
+     */
+    @DELETE("/category/{id}")
+    Observable<JSONObject> deleteModuleType(@Path("id") Long id);
+
+    /**
+     * 更新todo是否完成
+     */
+    @PUT("/todo-plan/{id}/is-finish")
+    Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
 
     @POST("/note-plan")
     Observable<HttpResult> addRecord(@Body NotePlanBo recordPlanBo);
 
-    @POST("/user/login")
-    Observable<JSONObject> userLogin(@Body UserBo loginBo);
 
     @GET("/note/list")
     Observable<HttpResult> noteList();
 
-    @GET("/note-type/list")
-    Observable<HttpResult> noteType(@Query("type") Integer type);
+    @GET("/note-plan/{id}")
+    Observable<HttpResult> listByTypeId(@Path("id") Long id);
 
     @GET("/micro-sentence")
     Observable<HttpResult> microSentence();
@@ -65,12 +81,6 @@ public interface HttpService {
 
     @POST("/todo-plan")
     Observable<JSONObject> todoPlan(@Body TodoPlanBo todoPlanBo);
-
-    /**
-     * 更新todo是否完成
-     */
-    @PUT("/todo-plan/{id}/is-finish")
-    Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
 
     @GET("/photo-story/list")
     Observable<HttpResult> photoStoryList(@Query("type") Integer type);

@@ -1,15 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/dimen_margin">
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_0"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bg_white_translucent"
+        android:background="@color/color_white"
         android:orientation="horizontal"
-        android:padding="@dimen/dimen_margin">
+        android:paddingLeft="@dimen/dimen_margin"
+        android:paddingTop="70dp"
+        android:paddingRight="@dimen/dimen_margin"
+        android:paddingBottom="@dimen/dimen_margin">
 
         <ImageView
             android:id="@+id/img_portrait"
@@ -17,49 +20,44 @@
             android:layout_height="60dp"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/text_username"
-            style="@style/style_text_title_dark"
-            android:layout_gravity="bottom"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dimen_margin"
-            android:text="小小强者" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_username"
+                style="@style/style_text_title_dark"
+                android:text="小小强者" />
+
+            <TextView
+                android:id="@+id/text_signature"
+                style="@style/style_text_common_gray"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="可时光啊，不听话，总催着人长大。" />
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        style="@style/style_text_setting_item"
-        android:text="远程控制" />
+    <!--    <TextView-->
+    <!--        style="@style/style_text_setting_item"-->
+    <!--        android:text="回忆录"-->
+    <!--        android:visibility="gone" />-->
 
-    <View style="@style/style_view_common_line" />
-
-    <TextView
-        style="@style/style_text_setting_item"
-        android:text="回忆录" />
-
-    <View style="@style/style_view_common_line" />
+    <!--    <TextView-->
+    <!--        style="@style/style_text_setting_item"-->
+    <!--        android:text="时光机"-->
+    <!--        android:visibility="gone" />-->
 
     <TextView
         style="@style/style_text_setting_item"
-        android:text="时光机" />
-
-    <View style="@style/style_view_common_line" />
-
-    <TextView
-        style="@style/style_text_setting_item"
+        android:drawableLeft="@drawable/ic_pull"
         android:text="主题皮肤" />
-
-    <View style="@style/style_view_common_line" />
 
     <TextView
         android:id="@+id/text_logout"
         style="@style/style_text_setting_item"
+        android:drawableLeft="@drawable/ic_pull"
         android:text="退出登录" />
-
-    <View style="@style/style_view_common_line" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/text_photo"-->
-<!--        style="@style/style_text_setting_item"-->
-<!--        android:text="照片故事" />-->
-
-<!--    <View style="@style/style_view_common_line" />-->
 </LinearLayout>

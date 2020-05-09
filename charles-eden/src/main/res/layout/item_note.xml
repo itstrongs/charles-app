@@ -2,8 +2,9 @@
     android:id="@+id/layout_head"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/dimen_margin_small"
-    android:background="@drawable/shape_bg_white_translucent"
+    android:layout_marginTop="5dp"
+    android:background="@color/color_white"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <ImageView
@@ -14,29 +15,35 @@
         android:src="@drawable/ic_set_top"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/text_name"
-        style="@style/style_text_common_dark"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/dimen_margin_small"
-        android:text="书评影评" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_margin"
+        android:src="@drawable/ic_party" />
 
-    <TextView
-        android:id="@+id/text_desc"
-        style="@style/style_text_tip_gray"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/dimen_margin_small"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_margin"
         android:layout_weight="1"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textColor="#aaa" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/style_text_common_dark"
+            android:text="书评影评" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_marginTop="@dimen/dimen_margin_small"
+            style="@style/style_text_tip_gray"
+            android:text="小小强者" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/img_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_margin"
+        android:padding="20dp"
         android:src="@drawable/ic_more" />
 </LinearLayout>

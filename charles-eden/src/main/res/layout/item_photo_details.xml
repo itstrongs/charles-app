@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/text_impression"
-        style="@style/style_text_common_white"
+        style="@style/style_text_tip_white"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/dimen_margin_small"
         android:text="测试" />
