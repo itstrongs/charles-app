@@ -17,9 +17,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.charles.eden.R;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.PersonFriendsBo;
-import com.charles.eden.model.dto.FriendsDto;
+import com.charles.eden.model.ConstantPool;
+import com.charles.eden.model.bean.Friends;
+import com.charles.eden.model.bean.PersonFriendsBo;
 import com.charles.utils.Logger;
+import com.charles.utils.SPHelper;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
 import com.charles.utils.base.BaseFragment;
@@ -45,7 +47,7 @@ public class FriendsFragment extends BaseFragment {
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    private List<FriendsDto> friendsDtos;
+    private List<Friends> friendsDtos;
     private MyAdapter mMyAdapter;
 
     @Override
@@ -77,7 +79,7 @@ public class FriendsFragment extends BaseFragment {
             @Override
             public void onResult(HttpResult result) {
                 swipeRefreshLayout.setRefreshing(false);
-                friendsDtos = JSONArray.parseArray(result.getStringData(), FriendsDto.class);
+                friendsDtos = JSONArray.parseArray(result.getStringData(), Friends.class);
                 if (friendsDtos != null && friendsDtos.size() > 0) {
                     mMyAdapter.notifyDataSetChanged();
                 }
@@ -98,9 +100,7 @@ public class FriendsFragment extends BaseFragment {
         editDialog.setView(view);
         editDialog.setPositiveButton("添加", (dialog, which) -> {
             EditText editName = view.findViewById(R.id.edit_name);
-            EditText editDesc = view.findViewById(R.id.edit_desc);
             final String typeName = editName.getText().toString().trim();
-            final String typeDesc = editDesc.getText().toString().trim();
             if (StringUtils.isEmpty(typeName)) {
                 ToastUtils.show(mContext, "类型名不能为空");
                 return;
@@ -135,33 +135,38 @@ public class FriendsFragment extends BaseFragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-            FriendsDto friendsDto = friendsDtos.get(position);
-            Picasso.with(mContext).load(friendsDto.getPortrait()).into(holder.imgPortrait);
-            holder.textNickname.setText(friendsDto.getNickname());
-            holder.textContent.setText(friendsDto.getContent());
-            holder.textDate.setText(friendsDto.getCreatedAt());
-            holder.imgDelete.setOnClickListener(v -> {
-            });
-            holder.imgDelete.setOnClickListener(v -> new AlertDialog.Builder(mContext)
-                    .setTitle("确定删除吗")
-                    .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
-                    .setPositiveButton("确定", (dialog, which) -> {
-                        RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
-                            @Override
-                            public Observable<HttpResult> getObservable(HttpService httpService) {
-                                Logger.d("friendsDto.getId(): " + friendsDto.getId());
-                                return httpService.personFriends(friendsDto.getId());
-                            }
+            Friends friends = friendsDtos.get(position);
+            Picasso.with(mContext).load(friends.getPortrait()).into(holder.imgPortrait);
+            holder.textNickname.setText(friends.getNickname());
+            holder.textContent.setText(friends.getContent());
+            holder.textDate.setText(friends.getCreatedAt());
+            if (friends.getUserId().equals(SPHelper.getLong(mContext, ConstantPool.SP_USER_ID))) {
+                holder.imgDelete.setVisibility(View.VISIBLE);
+                holder.imgDelete.setOnClickListener(v -> new AlertDialog.Builder(mContext)
+                        .setTitle("确定删除吗")
+                        .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
+                        .setPositiveButton("确定", (dialog, which) -> {
+                            RetrofitHelperBak.INSTANCE.post(mActivity, new RetrofitHelperBak.RetrofitCallback() {
+                                @Override
+                                public Observable<HttpResult> getObservable(HttpService httpService) {
+                                    Logger.d("friendsDto.getId(): " + friends.getId());
+                                    return httpService.personFriends(friends.getId());
+                                }
 
-                            @Override
-                            public void onResult(HttpResult result) {
-                                initData();
-                            }
-                        });
-                        dialog.dismiss();
-                    })
-                    .create()
-                    .show());
+                                @Override
+                                public void onResult(HttpResult result) {
+                                    initData();
+                                }
+                            });
+                            dialog.dismiss();
+                        })
+                        .create()
+                        .show());
+            }
+            if (StringUtils.isNotEmpty(friends.getImage())) {
+                holder.imgBg.setVisibility(View.VISIBLE);
+                Picasso.with(mContext).load(friends.getImage()).into(holder.imgBg);
+            }
         }
 
         @Override
@@ -176,6 +181,7 @@ public class FriendsFragment extends BaseFragment {
             TextView textContent;
             TextView textDate;
             ImageView imgDelete;
+            ImageView imgBg;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -184,6 +190,7 @@ public class FriendsFragment extends BaseFragment {
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
                 imgDelete = itemView.findViewById(R.id.img_delete);
+                imgBg = itemView.findViewById(R.id.img_bg);
             }
         }
     }

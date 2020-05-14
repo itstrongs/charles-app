@@ -1,11 +1,11 @@
 package com.charles.eden.helper;
 
 import com.alibaba.fastjson.JSONObject;
-import com.charles.eden.model.bo.NotePlanBo;
-import com.charles.eden.model.bo.NoteTypeBo;
-import com.charles.eden.model.bo.PersonFriendsBo;
-import com.charles.eden.model.bo.TodoPlanBo;
-import com.charles.eden.model.bo.UserBo;
+import com.charles.eden.model.bean.NotePlanBo;
+import com.charles.eden.model.bean.NoteTypeBo;
+import com.charles.eden.model.bean.PersonFriendsBo;
+import com.charles.eden.model.bean.TodoPlanBo;
+import com.charles.eden.model.bean.UserBo;
 import com.charles.utils.http.HttpResult;
 
 import io.reactivex.Observable;
@@ -31,6 +31,12 @@ public interface HttpService {
     Observable<JSONObject> userLogin(@Body UserBo loginBo);
 
     /**
+     * 获取用户信息
+     */
+    @GET("/user")
+    Observable<JSONObject> userInfo();
+
+    /**
      * 新增模块分类
      */
     @POST("/category")
@@ -40,7 +46,13 @@ public interface HttpService {
      * 模块分类列表
      */
     @GET("/category/list")
-    Observable<HttpResult> listModuleType(@Query("moduleType") Integer moduleType, @Query("queryRange") Integer queryRange);
+    Observable<JSONObject> listModuleType(@Query("moduleType") Integer moduleType);
+
+    /**
+     * 模块分类列表
+     */
+    @GET("/category/list")
+    Observable<JSONObject> listModuleType(@Query("moduleType") Integer moduleType, @Query("queryRange") Integer queryRange);
 
     /**
      * 删除模块分类
@@ -54,18 +66,30 @@ public interface HttpService {
     @PUT("/todo-plan/{id}/is-finish")
     Observable<HttpResult> todoFinish(@Path("id") Long id, @Query("isFinish") Boolean isFinish);
 
-    @POST("/note-plan")
+    /** ----------------------------------------- 笔记 ----------------------------------------- **/
+    /**
+     * 新增笔记
+     */
+    @POST("/note")
     Observable<HttpResult> addRecord(@Body NotePlanBo recordPlanBo);
 
-
+    /**
+     * 笔记列表
+     */
     @GET("/note/list")
-    Observable<HttpResult> noteList();
+    Observable<JSONObject> listNote(@Query("categoryId") Long categoryId);
 
-    @GET("/note-plan/{id}")
-    Observable<HttpResult> listByTypeId(@Path("id") Long id);
-
+    /**
+     * 微话列表
+     */
     @GET("/micro-sentence")
-    Observable<HttpResult> microSentence();
+    Observable<JSONObject> microSentence(@Query("range") Integer range);
+
+    /**
+     * 微话点赞
+     */
+    @PUT("/micro-sentence/{id}/favour")
+    Observable<JSONObject> microSentenceFavour(@Path("id") Long id);
 
     @GET("/person-friends/list")
     Observable<HttpResult> friendsList();

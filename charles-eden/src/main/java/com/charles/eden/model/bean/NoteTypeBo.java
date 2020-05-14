@@ -1,4 +1,6 @@
-package com.charles.eden.model.bo;
+package com.charles.eden.model.bean;
+
+import java.io.Serializable;
 
 /**
  * description
@@ -6,7 +8,7 @@ package com.charles.eden.model.bo;
  * @author liufengqiang <fq1781@163.com>
  * @date 2019-12-24 13:12
  */
-public class NoteTypeBo {
+public class NoteTypeBo implements Serializable {
 
     private Long id;
     /** 用户id */

@@ -16,7 +16,7 @@ import com.charles.eden.R;
 import com.charles.eden.activity.PhotoDetailsActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.PhotoStoryBo;
+import com.charles.eden.model.bean.PhotoStoryBo;
 import com.charles.utils.Logger;
 import com.charles.utils.base.BaseFragment;
 import com.charles.utils.http.HttpResult;

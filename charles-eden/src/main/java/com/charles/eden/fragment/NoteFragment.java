@@ -1,5 +1,6 @@
 package com.charles.eden.fragment;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
+import com.charles.eden.activity.NoteListActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
-import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.NoteBo;
-import com.charles.eden.model.bo.NoteTypeBo;
+import com.charles.eden.model.bean.NoteTypeBo;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
 import com.charles.utils.base.BaseFragment;
-import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.RecyclerItemClickListener;
 
 import java.util.List;
@@ -47,7 +45,7 @@ public class NoteFragment extends BaseFragment {
     SwipeRefreshLayout swipeRefreshLayout;
 
     private NoteAdapter mPartyAdapter;
-    private List<NoteBo> noteBos;
+    private List<NoteTypeBo> noteBos;
 
     @Override
     protected int setFragmentLayout() {
@@ -58,32 +56,27 @@ public class NoteFragment extends BaseFragment {
     protected void initView() {
         recyclerViewParty.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewParty.setAdapter(mPartyAdapter = new NoteAdapter());
-//        mPartyAdapter.setOnItemClickListener(new RecyclerItemClickListener() {
-//            @Override
-//            public void onItemClickListener(int position) {
-//                Intent intent = new Intent(getContext(), NoteListActivity.class);
-//                intent.putExtra("record_plan_type", noteBos.get(position));
-//                startActivity(intent);
-//            }
-//        });
+        mPartyAdapter.setOnItemClickListener(position -> {
+            Intent intent = new Intent(getContext(), NoteListActivity.class);
+            intent.putExtra("record_plan_type", noteBos.get(position));
+            startActivity(intent);
+        });
         swipeRefreshLayout.setOnRefreshListener(this::initData);
     }
 
     @Override
     protected void initData() {
-        RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
+        RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitListCallback<NoteTypeBo>() {
             @Override
-            public Observable<HttpResult> getObservable(HttpService httpService) {
-                return httpService.noteList();
+            public Observable<JSONObject> getObservable(HttpService httpService) {
+                return httpService.listModuleType(0);
             }
 
             @Override
-            public void onResult(HttpResult result) {
+            public void onResult(String msg, List<NoteTypeBo> result) {
+                noteBos = result;
                 swipeRefreshLayout.setRefreshing(false);
-                noteBos = JSONArray.parseArray(result.getStringData(), NoteBo.class);
-                if (noteBos != null && noteBos.size() > 0) {
-                    mPartyAdapter.notifyDataSetChanged();
-                }
+                mPartyAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -163,19 +156,16 @@ public class NoteFragment extends BaseFragment {
 //                }
 //            });
 
-            NoteBo noteBo = noteBos.get(position);
+            NoteTypeBo noteBo = noteBos.get(position);
             holder.textName.setText(noteBo.getName());
 //            if (noteBo.get()) {
             holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             holder.imgSetTop.setVisibility(View.VISIBLE);
 //            }
             holder.textDesc.setText(noteBo.getNickname());
-            holder.layoutHead.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClickListener(position);
-                    }
+            holder.layoutHead.setOnClickListener(v -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClickListener(position);
                 }
             });
         }
@@ -211,7 +201,7 @@ public class NoteFragment extends BaseFragment {
                 super(itemView);
                 layoutHead = itemView.findViewById(R.id.layout_head);
                 textName = itemView.findViewById(R.id.text_name);
-                textDesc = itemView.findViewById(R.id.text_desc);
+                textDesc = itemView.findViewById(R.id.text_date);
                 imgSetTop = itemView.findViewById(R.id.img_set_top);
                 imgMore = itemView.findViewById(R.id.img_more);
             }

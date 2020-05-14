@@ -1,4 +1,4 @@
-package com.charles.eden.model.dto;
+package com.charles.eden.model.bean;
 
 /**
  * description

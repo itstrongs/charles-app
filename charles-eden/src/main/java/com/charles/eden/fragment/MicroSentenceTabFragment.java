@@ -1,23 +1,23 @@
 package com.charles.eden.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.helper.HttpService;
-import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.NoteTypeBo;
-import com.charles.utils.Logger;
+import com.charles.eden.helper.RetrofitHelper;
+import com.charles.eden.model.bean.MicroSentence;
 import com.charles.utils.base.BaseFragment;
-import com.charles.utils.http.HttpResult;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class MicroSentenceTabFragment extends BaseFragment {
     RecyclerView recyclerView;
 
     private MyAdapter mMyAdapter;
-    private List<NoteTypeBo> mNoteTypeBo;
+    private List<MicroSentence> microSentences;
 
     @Override
     protected int setFragmentLayout() {
@@ -58,20 +58,17 @@ public class MicroSentenceTabFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
+        RetrofitHelper.INSTANCE.post(getActivity(), MicroSentence.class, new RetrofitHelper.RetrofitListCallback<MicroSentence>() {
             @Override
-            public Observable<HttpResult> getObservable(HttpService httpService) {
-                return httpService.listModuleType(1, getArguments().getInt(ARG_SECTION_NUMBER));
+            public Observable<JSONObject> getObservable(HttpService httpService) {
+                return httpService.microSentence(getArguments().getInt(ARG_SECTION_NUMBER));
             }
 
             @Override
-            public void onResult(HttpResult result) {
+            public void onResult(String msg, List<MicroSentence> result) {
                 swipeRefreshLayout.setRefreshing(false);
-                mNoteTypeBo = JSONArray.parseArray(result.getStringData(), NoteTypeBo.class);
-                Logger.d("请求成功，size = " + mNoteTypeBo.size());
-                if (mNoteTypeBo != null && mNoteTypeBo.size() > 0) {
-                    mMyAdapter.notifyDataSetChanged();
-                }
+                microSentences = result;
+                mMyAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -86,17 +83,55 @@ public class MicroSentenceTabFragment extends BaseFragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, final int position) {
+            MicroSentence microSentence = microSentences.get(position);
+            holder.textCategory.setText("#" + microSentence.getCategory() + "#");
+            holder.textSource.setText("+ " + microSentence.getSource());
+            holder.textContent.setText(microSentence.getContent());
+            Drawable drawable = getResources().getDrawable(microSentence.getFavour() ? R.drawable.ic_favour_checked : R.drawable.ic_favour);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            holder.textFavour.setCompoundDrawables(drawable, null, null, null);
+            holder.textFavour.setText(String.valueOf(microSentence.getFavourNum()));
+            holder.textFavour.setOnClickListener(v -> {
+                RetrofitHelper.INSTANCE.post(getActivity(), MicroSentence.class, new RetrofitHelper.RetrofitListCallback<MicroSentence>() {
+                    @Override
+                    public Observable<JSONObject> getObservable(HttpService httpService) {
+                        return httpService.microSentenceFavour(microSentence.getId());
+                    }
+
+                    @Override
+                    public void onResult(String msg, List<MicroSentence> result) {
+                        if (getArguments().getInt(ARG_SECTION_NUMBER) == 0) {
+                            microSentences.remove(microSentence);
+                        } else {
+                            microSentences.get(position).setFavour(!microSentence.getFavour());
+                            if (microSentence.getFavour()) {
+                                microSentences.get(position).setFavourNum(microSentence.getFavourNum() + 1);
+                            }
+                        }
+                        mMyAdapter.notifyDataSetChanged();
+                    }
+                });
+            });
         }
 
         @Override
         public int getItemCount() {
-            return 10;
+            return microSentences == null ? 0 : microSentences.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
+            TextView textCategory;
+            TextView textSource;
+            TextView textContent;
+            TextView textFavour;
+
             MyViewHolder(View itemView) {
                 super(itemView);
+                textCategory = itemView.findViewById(R.id.text_category);
+                textSource = itemView.findViewById(R.id.text_source);
+                textContent = itemView.findViewById(R.id.text_content);
+                textFavour = itemView.findViewById(R.id.text_favour);
             }
         }
     }

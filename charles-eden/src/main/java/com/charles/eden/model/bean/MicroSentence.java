@@ -1,4 +1,4 @@
-package com.charles.eden.model.dto;
+package com.charles.eden.model.bean;
 
 /**
  * description
@@ -6,8 +6,9 @@ package com.charles.eden.model.dto;
  * @author liufengqiang <fq1781@163.com>
  * @date 2019-12-22 14:32
  */
-public class MicroSentenceDto {
+public class MicroSentence {
 
+    private Long id;
     /** 用户id */
     private Long userId;
     /** 分类 */
@@ -20,6 +21,18 @@ public class MicroSentenceDto {
     private String feel;
     /** 背景图地址 */
     private String imageUrl;
+    /** 是否点赞 */
+    private Boolean isFavour;
+    /** 点赞人数 */
+    private Integer favourNum;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getUserId() {
         return userId;
@@ -67,5 +80,21 @@ public class MicroSentenceDto {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Boolean getFavour() {
+        return isFavour;
+    }
+
+    public void setFavour(Boolean favour) {
+        isFavour = favour;
+    }
+
+    public Integer getFavourNum() {
+        return favourNum;
+    }
+
+    public void setFavourNum(Integer favourNum) {
+        this.favourNum = favourNum;
     }
 }

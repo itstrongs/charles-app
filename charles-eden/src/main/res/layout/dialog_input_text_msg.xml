@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.charles.eden.view.KeyboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_outside_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rl_inputdlg_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#ffffff"
+                android:orientation="vertical">
+
+                <com.charles.eden.view.ScrollViewEditText
+                    android:id="@+id/et_input_message"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/confrim_btn"
+                    android:background="#ffffff"
+                    android:gravity="top"
+                    android:hint="喜欢就要大声说出"
+                    android:imeOptions="flagNoExtractUi"
+                    android:lineSpacingMultiplier="1.2"
+                    android:maxHeight="100dp"
+                    android:maxLength="2000"
+                    android:maxLines="6"
+                    android:minHeight="45dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:scrollbars="vertical"
+                    android:textColor="#FF333333"
+                    android:textColorHint="#ffcccccc"
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/confrim_btn"
+                    tools:ignore="InvalidImeActionId,MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/confrim_btn"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+
+                    android:layout_alignParentRight="true"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:text="发送"
+                    android:textColor="#ffcccccc"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/et_input_message"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</com.charles.eden.view.KeyboardLayout>

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,13 +15,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.helper.HttpService;
+import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.NotePlanBo;
-import com.charles.eden.model.bo.NoteTypeBo;
+import com.charles.eden.model.bean.NotePlanBo;
+import com.charles.eden.model.bean.NoteTypeBo;
 import com.charles.utils.Logger;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
@@ -51,7 +51,7 @@ public class NoteListActivity extends BaseActivity {
     RecyclerView recyclerView;
 
     private NoteTypeBo noteTypeBo;
-    private List<NotePlanBo> recordPlanBos;
+    private List<NotePlanBo> notePlanBos;
     private MyAdapter mMyAdapter;
 
     @Override
@@ -68,20 +68,32 @@ public class NoteListActivity extends BaseActivity {
     }
 
     private void getRecordPlanData() {
-        RetrofitHelperBak.INSTANCE.post(this, new RetrofitHelperBak.RetrofitCallback() {
+        RetrofitHelper.INSTANCE.post(this, NotePlanBo.class, new RetrofitHelper.RetrofitListCallback<NotePlanBo>() {
             @Override
-            public Observable<HttpResult> getObservable(HttpService httpService) {
-                return httpService.listByTypeId(noteTypeBo.getId());
+            public Observable<JSONObject> getObservable(HttpService httpService) {
+                return httpService.listNote(noteTypeBo.getId());
             }
 
             @Override
-            public void onResult(HttpResult result) {
-                recordPlanBos = JSONArray.parseArray(result.getStringData(), NotePlanBo.class);
-                if (recordPlanBos != null && recordPlanBos.size() > 0) {
-                    mMyAdapter.notifyDataSetChanged();
-                }
+            public void onResult(String msg, List<NotePlanBo> result) {
+                notePlanBos= result;
+                mMyAdapter.notifyDataSetChanged();
             }
         });
+//        RetrofitHelper.INSTANCE.post(this,  new RetrofitHelper.RetrofitCallback() {
+//            @Override
+//            public Observable<HttpResult> getObservable(HttpService httpService) {
+//                return httpService.listNote(noteTypeBo.getId());
+//            }
+//
+//            @Override
+//            public void onResult(HttpResult result) {
+//                notePlanBos = JSONArray.parseArray(result.getStringData(), NotePlanBo.class);
+//                if (notePlanBos != null && notePlanBos.size() > 0) {
+//                    mMyAdapter.notifyDataSetChanged();
+//                }
+//            }
+//        });
     }
 
     @OnClick(R.id.img_add)
@@ -135,24 +147,24 @@ public class NoteListActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-            final NotePlanBo notePlanBo = recordPlanBos.get(position);
+            final NotePlanBo notePlanBo = notePlanBos.get(position);
             Logger.d("笔记：" + notePlanBo);
             holder.textName.setText(position + 1 + "." + " " + notePlanBo.getName());
             if (notePlanBo.getSetTop()) {
                 holder.textName.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-                holder.imgSetTop.setVisibility(View.VISIBLE);
+//                holder.imgSetTop.setVisibility(View.VISIBLE);
             }
             switch (noteTypeBo.getModuleType()) {
                 case 0:
                     holder.textContent.setVisibility(View.VISIBLE);
                     holder.textContent.setOnClickListener(v -> {
                         Intent intent = new Intent(mContext, NoteDetailsActivity.class);
-                        intent.putExtra("data", recordPlanBos.get(position));
+                        intent.putExtra("data", notePlanBos.get(position));
                         startActivity(intent);
                     });
                     break;
                 case 1:
-//                    holder.checkBox.setVisibility(View.VISIBLE);
+//                    holder.checkBox.setVisibility(View.VISIBLE)   ;
 //                    holder.checkBox.setChecked(notePlanBo.getState() != null && notePlanBo.getState() == 1);
                     holder.viewLine.setVisibility(notePlanBo.getState() == null || notePlanBo.getState() == 0 ? View.GONE : View.VISIBLE);
 //                    holder.checkBox.setOnClickListener(v -> {
@@ -175,12 +187,12 @@ public class NoteListActivity extends BaseActivity {
                     break;
             }
             holder.textContent.setText(notePlanBo.getContent());
-            holder.textDate.setText(notePlanBo.getUpdateAt());
+            holder.textDate.setText(notePlanBo.getUpdatedAt());
         }
 
         @Override
         public int getItemCount() {
-            return recordPlanBos == null ? 0 : recordPlanBos.size();
+            return notePlanBos == null ? 0 : notePlanBos.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -191,7 +203,7 @@ public class NoteListActivity extends BaseActivity {
 //            TextView btnCard;
             TextView textContent;
             TextView textDate;
-            ImageView imgSetTop;
+//            ImageView imgSetTop;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -201,7 +213,7 @@ public class NoteListActivity extends BaseActivity {
 //                btnCard = itemView.findViewById(R.id.btn_card);
                 textContent = itemView.findViewById(R.id.text_content);
                 textDate = itemView.findViewById(R.id.text_date);
-                imgSetTop = itemView.findViewById(R.id.img_set_top);
+//                imgSetTop = itemView.findViewById(R.id.img_set_top);
             }
         }
     }

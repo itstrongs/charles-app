@@ -1,16 +1,19 @@
-package com.charles.eden.model.bo;
+package com.charles.eden.model.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * description
+ * 说明
  *
- * @author liufengqiang <fq1781@163.com>
- * @date 2019-12-22 14:07
+ * @Author liufengqiang <fq1781@163.com>
+ * @Date 2019年08月02日 16:18
  */
-public class NoteBo {
+public class NotePlanBo implements Serializable {
 
     private Long id;
+    /** 用户id */
+    private Long userId;
     /** 笔记名 */
     private String name;
     /** 笔记内容 */
@@ -23,13 +26,11 @@ public class NoteBo {
     private Integer state;
     /** 执行时间 */
     private Date executeAt;
-
-    /** 用户id */
-    private Long userId;
-    /** 昵称 */
+    /** 权限 0.公开 1.自己可见 2.匿名发表 */
+    private Integer permission;
     private String nickname;
-    /** 头像 */
-    private String portrait;
+    /** 更新时间 */
+    private String updatedAt;
 
     public Long getId() {
         return id;
@@ -37,6 +38,14 @@ public class NoteBo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -87,12 +96,12 @@ public class NoteBo {
         this.executeAt = executeAt;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Integer getPermission() {
+        return permission;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setPermission(Integer permission) {
+        this.permission = permission;
     }
 
     public String getNickname() {
@@ -103,11 +112,11 @@ public class NoteBo {
         this.nickname = nickname;
     }
 
-    public String getPortrait() {
-        return portrait;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -26,8 +26,8 @@ import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.helper.RetrofitHelperBak;
 import com.charles.eden.model.ConstantPool;
-import com.charles.eden.model.bo.NoteTypeBo;
-import com.charles.eden.model.bo.TodoPlanBo;
+import com.charles.eden.model.bean.NoteTypeBo;
+import com.charles.eden.model.bean.TodoPlanBo;
 import com.charles.utils.SPHelper;
 import com.charles.utils.http.HttpResult;
 

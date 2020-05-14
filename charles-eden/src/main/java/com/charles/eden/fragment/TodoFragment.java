@@ -17,18 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.charles.eden.R;
 import com.charles.eden.activity.TodoListActivity;
 import com.charles.eden.helper.DialogHelper;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
-import com.charles.eden.helper.RetrofitHelperBak;
-import com.charles.eden.model.bo.NoteTypeBo;
-import com.charles.utils.Logger;
+import com.charles.eden.model.bean.NoteTypeBo;
 import com.charles.utils.base.BaseFragment;
-import com.charles.utils.http.HttpResult;
 import com.charles.utils.view.RecyclerItemClickListener;
 
 import java.util.List;
@@ -82,20 +78,17 @@ public class TodoFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        RetrofitHelperBak.INSTANCE.post(getActivity(), new RetrofitHelperBak.RetrofitCallback() {
+        RetrofitHelper.INSTANCE.post(mActivity, NoteTypeBo.class, new RetrofitHelper.RetrofitListCallback<NoteTypeBo>() {
             @Override
-            public Observable<HttpResult> getObservable(HttpService httpService) {
+            public Observable<JSONObject> getObservable(HttpService httpService) {
                 return httpService.listModuleType(1, getArguments().getInt(ARG_SECTION_NUMBER));
             }
 
             @Override
-            public void onResult(HttpResult result) {
+            public void onResult(String msg, List<NoteTypeBo> result) {
                 swipeRefreshLayout.setRefreshing(false);
-                mNoteTypeBo = JSONArray.parseArray(result.getStringData(), NoteTypeBo.class);
-                Logger.d("请求成功，size = " + mNoteTypeBo.size());
-                if (mNoteTypeBo != null && mNoteTypeBo.size() > 0) {
-                    mMyAdapter.notifyDataSetChanged();
-                }
+                mNoteTypeBo = result;
+                mMyAdapter.notifyDataSetChanged();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.charles.eden.model.dto;
+package com.charles.eden.model.bean;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @author liufengqiang <fq1781@163.com>
  * @date 2019-12-22 15:19
  */
-public class FriendsDto {
+public class Friends {
 
     private Long id;
     /** 用户id */
@@ -23,6 +23,8 @@ public class FriendsDto {
     private String createdAt;
     /** 评论列表 */
     private List<CommentDto> comments;
+    /** 图片 */
+    private String image;
 
     public Long getId() {
         return id;
@@ -78,5 +80,13 @@ public class FriendsDto {
 
     public void setComments(List<CommentDto> comments) {
         this.comments = comments;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -35,20 +35,9 @@
                 android:id="@+id/text_signature"
                 style="@style/style_text_common_gray"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="可时光啊，不听话，总催着人长大。" />
+                android:gravity="bottom" />
         </LinearLayout>
     </LinearLayout>
-
-    <!--    <TextView-->
-    <!--        style="@style/style_text_setting_item"-->
-    <!--        android:text="回忆录"-->
-    <!--        android:visibility="gone" />-->
-
-    <!--    <TextView-->
-    <!--        style="@style/style_text_setting_item"-->
-    <!--        android:text="时光机"-->
-    <!--        android:visibility="gone" />-->
 
     <TextView
         style="@style/style_text_setting_item"

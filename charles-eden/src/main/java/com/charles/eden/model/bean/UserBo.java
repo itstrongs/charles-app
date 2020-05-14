@@ -1,4 +1,4 @@
-package com.charles.eden.model.bo;
+package com.charles.eden.model.bean;
 
 /**
  * description
@@ -14,6 +14,7 @@ public class UserBo {
     private String portrait;
     private String verifyCode;
     private String authorization;
+    private String signature;
 
     public UserBo() {
     }
@@ -69,5 +70,13 @@ public class UserBo {
 
     public void setAuthorization(String authorization) {
         this.authorization = authorization;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 }

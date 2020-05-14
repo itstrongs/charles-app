@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.charles.eden.R;
-import com.charles.eden.model.dto.MicroSentenceDto;
-import com.charles.utils.ResUtils;
+import com.charles.eden.model.bean.MicroSentence;
 import com.charles.utils.base.BaseFragment;
 import com.squareup.picasso.Picasso;
 
@@ -36,14 +35,14 @@ public class PageFragment extends BaseFragment {
     private ImageView mImgIllustration;
 //    private ImageView mImgBg;
 
-    private MicroSentenceDto mMicroSentenceDto;
+    private MicroSentence mMicroSentenceDto;
 
     private List<String> mImgUrl = new ArrayList<>();
 
     public PageFragment() {
     }
 
-    public PageFragment(MicroSentenceDto microSentenceDto) {
+    public PageFragment(MicroSentence microSentenceDto) {
         this.mMicroSentenceDto = microSentenceDto;
         this.mImgUrl.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577010287509&di=aad4cbc73a62d2a2a249e22eb17254ad&imgtype=0&src=http%3A%2F%2Fpic2.zhimg.com%2F50%2Fv2-1c3bd9fe6c6a28c5ca3a678549dfde28_hd.jpg");
         this.mImgUrl.add("https://pic2.zhimg.com/80/v2-86cf45e7f34a38f5f4e20559f7d6fb35_hd.jpg");

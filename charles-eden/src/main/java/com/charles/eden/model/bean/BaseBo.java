@@ -1,4 +1,4 @@
-package com.charles.eden.model.bo;
+package com.charles.eden.model.bean;
 
 public class BaseBo {
 

@@ -11,7 +11,7 @@ import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.ConstantPool;
-import com.charles.eden.model.bo.UserBo;
+import com.charles.eden.model.bean.UserBo;
 import com.charles.utils.SPHelper;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;

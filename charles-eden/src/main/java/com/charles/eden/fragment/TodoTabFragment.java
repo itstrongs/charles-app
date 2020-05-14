@@ -12,7 +12,7 @@ import com.charles.eden.R;
 import com.charles.eden.helper.HttpService;
 import com.charles.eden.helper.RetrofitHelper;
 import com.charles.eden.model.SectionsPagerAdapter;
-import com.charles.eden.model.bo.NoteTypeBo;
+import com.charles.eden.model.bean.NoteTypeBo;
 import com.charles.utils.StringUtils;
 import com.charles.utils.ToastUtils;
 import com.charles.utils.base.BaseFragment;
