@@ -39,7 +39,7 @@ public class PhotoStoryFragment extends BaseFragment {
     private List<PhotoStoryBo> photoStoryBos;
     private int index = 1;
 
-    public static PhotoStoryFragment newInstance(int index) {
+    static PhotoStoryFragment newInstance(int index) {
         PhotoStoryFragment fragment = new PhotoStoryFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);

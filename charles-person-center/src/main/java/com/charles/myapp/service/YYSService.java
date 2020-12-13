@@ -2,17 +2,12 @@ package com.charles.myapp.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 
-import com.charles.library.utils.Logger;
-import com.charles.library.utils.SPHelper;
 import com.charles.myapp.data.ConstantPool;
+import com.charles.utils.Logger;
+import com.charles.utils.SPHelper;
 
 import java.io.DataOutputStream;
 import java.io.OutputStream;

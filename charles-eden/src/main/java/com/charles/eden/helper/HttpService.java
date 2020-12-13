@@ -107,5 +107,5 @@ public interface HttpService {
     Observable<JSONObject> todoPlan(@Body TodoPlanBo todoPlanBo);
 
     @GET("/photo-story/list")
-    Observable<HttpResult> photoStoryList(@Query("type") Integer type);
+    Observable<HttpResult> photoStoryList(@Query("range") Integer range);
 }

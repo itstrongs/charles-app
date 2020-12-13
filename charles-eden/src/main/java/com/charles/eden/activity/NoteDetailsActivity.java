@@ -12,6 +12,9 @@ import com.charles.eden.helper.BaseActivity;
 import com.charles.eden.model.bean.NotePlanBo;
 import com.zzhoujay.markdown.MarkDown;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,8 +28,8 @@ public class NoteDetailsActivity extends BaseActivity {
 
     @BindView(R.id.text_title)
     TextView textTitle;
-    @BindView(R.id.text_content)
-    TextView textContent;
+//    @BindView(R.id.text_content)
+//    TextView textContent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,16 +38,20 @@ public class NoteDetailsActivity extends BaseActivity {
         ButterKnife.bind(this);
         NotePlanBo recordPlanBo = (NotePlanBo) getIntent().getSerializableExtra("data");
         textTitle.setText(recordPlanBo.getName());
-        textContent.setText(recordPlanBo.getContent());
+//        textContent.setText(recordPlanBo.getContent());
 
-        String md = "# 分布式问题";
-        textTitle.post(() -> {
-            Spanned spanned = MarkDown.fromMarkdown(md, source -> {
-                Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
-                drawable.setBounds(0, 0, 400, 400);
-                return drawable;
-            }, textTitle);
-            textTitle.setText(spanned);
-        });
+        try {
+            InputStream open = getAssets().open("分布式问题.md");
+            textTitle.post(() -> {
+                Spanned spanned = MarkDown.fromMarkdown(open, source -> {
+                    Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
+                    drawable.setBounds(0, 0, 400, 400);
+                    return drawable;
+                }, textTitle);
+                textTitle.setText(spanned);
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

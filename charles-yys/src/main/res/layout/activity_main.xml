@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_margin_big"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_point"
+            style="@style/style_text_common_dark"
+            android:text="当前触摸坐标：（0, 0）" />
+
+        <Button
+            android:id="@+id/btn_start_yh"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:text="开启御魂服务" />
+
+        <Button
+            android:id="@+id/btn_start_bg"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:text="开启百鬼服务" />
+
+        <Button
+            android:id="@+id/btn_close"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:text="关闭服务" />
+
+        <Button
+            android:id="@+id/btn_root"
+            style="@style/style_text_common_dark"
+            android:layout_width="match_parent"
+            android:text="获取root权限" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/style_text_common_dark"
+                android:text="御魂坐标 => X坐标：" />
+
+            <EditText
+                android:id="@+id/edit_yh_x"
+                style="@style/style_text_common_dark" />
+
+            <TextView
+                style="@style/style_text_common_dark"
+                android:text="Y坐标：" />
+
+            <EditText
+                android:id="@+id/edit_yh_y"
+                style="@style/style_text_common_dark" />
+
+            <Button
+                android:id="@+id/btn_ok_yh"
+                style="@style/style_text_common_dark"
+                android:text="确定" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/style_text_common_dark"
+                android:text="百鬼坐标 => X坐标：" />
+
+            <EditText
+                android:id="@+id/edit_bg_x"
+                style="@style/style_text_common_dark" />
+
+            <TextView
+                style="@style/style_text_common_dark"
+                android:text="Y坐标：" />
+
+            <EditText
+                android:id="@+id/edit_bg_y"
+                style="@style/style_text_common_dark" />
+
+            <Button
+                android:id="@+id/btn_ok_bg"
+                style="@style/style_text_common_dark"
+                android:text="确定" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/style_text_common_dark"
+            android:text="1440 * 900分辨率，御魂用默认值" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

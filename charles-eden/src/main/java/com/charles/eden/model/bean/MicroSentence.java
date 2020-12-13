@@ -25,6 +25,8 @@ public class MicroSentence {
     private Boolean isFavour;
     /** 点赞人数 */
     private Integer favourNum;
+    /** 评论数 */
+    private Integer commentNum = 0;
 
     public Long getId() {
         return id;
@@ -96,5 +98,13 @@ public class MicroSentence {
 
     public void setFavourNum(Integer favourNum) {
         this.favourNum = favourNum;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
     }
 }

@@ -1,2 +1,2 @@
-include ':charles-eden', ':charles-utils', ':charles-utils', ':charles-learn', ':charles-credit-assist', ':charles-person-center', ':charles-education-planet'
+include ':charles-eden', ':charles-utils', ':charles-utils', ':charles-learn', ':charles-credit-assist', ':charles-person-center', ':charles-education-planet', ':charles-todo', ':charles-yys'
 rootProject.name='charles-app'

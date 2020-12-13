@@ -112,6 +112,7 @@ public class MicroSentenceTabFragment extends BaseFragment {
                     }
                 });
             });
+            holder.textComment.setText(String.valueOf(microSentence.getCommentNum()));
         }
 
         @Override
@@ -125,6 +126,7 @@ public class MicroSentenceTabFragment extends BaseFragment {
             TextView textSource;
             TextView textContent;
             TextView textFavour;
+            TextView textComment;
 
             MyViewHolder(View itemView) {
                 super(itemView);
@@ -132,6 +134,7 @@ public class MicroSentenceTabFragment extends BaseFragment {
                 textSource = itemView.findViewById(R.id.text_source);
                 textContent = itemView.findViewById(R.id.text_content);
                 textFavour = itemView.findViewById(R.id.text_favour);
+                textComment = itemView.findViewById(R.id.text_comment);
             }
         }
     }
